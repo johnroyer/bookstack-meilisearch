@@ -63,7 +63,7 @@ services:
     networks:
       - app-network
   meilisearch:
-    image: getmeili/meilisearch:v1.9.1
+    image: getmeili/meilisearch:v1.35.0
     volumes:
       - ./data/meili:/meili_data
     ports:
