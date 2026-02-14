@@ -20,7 +20,7 @@ services:
       - ./dev/docker/init.db:/docker-entrypoint-initdb.d
       - ./data/db:/var/lib/mysql
     ports:
-      - 3306:3306
+      - 127.0.0.1:3306:3306
     networks:
       - app-network
   app:
@@ -44,7 +44,7 @@ services:
       MEILISEARCH_MASTER_KEY: ""
       MEILISEARCH_INDEX: bookstack
     ports:
-      - 8080:80
+      - 127.0.0.1:8080:80
     networks:
       - app-network
     volumes:
@@ -67,7 +67,7 @@ services:
     volumes:
       - ./data/meili:/meili_data
     ports:
-      - 7700:7700
+      - 127.0.0.1:7700:7700
     networks:
       - app-network
     # restore data from dump
