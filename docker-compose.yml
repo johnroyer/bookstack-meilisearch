@@ -70,6 +70,10 @@ services:
       - 7700:7700
     networks:
       - app-network
+    # restore data from dump
+    #command: /meilisearch --max-indexing-memory 8Gb --max-indexing-threads 6 --import-dump /meili_data/dumps/20260101-000000001.dump
+    # limit resource usage in dev
+    command: /meilisearch --max-indexing-memory 128M --max-indexing-threads 1
   mailhog:
     image: mailhog/mailhog
     ports:
