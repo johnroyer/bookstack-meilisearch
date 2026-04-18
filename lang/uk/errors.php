@@ -109,6 +109,7 @@ return [
     'import_zip_cant_read' => 'Не вдалося прочитати ZIP-файл.',
     'import_zip_cant_decode_data' => 'Не вдалося знайти і розшифрувати контент ZIP data.json.',
     'import_zip_no_data' => 'ZIP-файл не містить очікуваної книги, глави або вмісту сторінки.',
+    'import_zip_data_too_large' => 'Вміст ZIP data.json перевищує налаштований максимальний розмір додатка.',
     'import_validation_failed' => 'Не вдалося виконати перевірку ZIP-адреси із помилками:',
     'import_zip_failed_notification' => 'Не вдалося імпортувати ZIP-файл.',
     'import_perms_books' => 'У Вас не вистачає необхідних прав для створення книг.',
@@ -124,6 +125,7 @@ return [
     'api_incorrect_token_secret' => 'Секрет, наданий для даного використовуваного токена API є неправильним',
     'api_user_no_api_permission' => 'Власник використовуваного токена API не має дозволу здійснювати виклики API',
     'api_user_token_expired' => 'Термін дії токена авторизації закінчився',
+    'api_cookie_auth_only_get' => 'Only GET requests are allowed when using the API with cookie-based authentication',
 
     // Settings & Maintenance
     'maintenance_test_email_failure' => 'Помилка під час надсилання тестового електронного листа:',

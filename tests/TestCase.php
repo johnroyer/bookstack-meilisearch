@@ -13,6 +13,7 @@ use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Env;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Testing\Assert as PHPUnit;
 use Illuminate\Testing\Constraints\HasInDatabase;
@@ -157,6 +158,23 @@ abstract class TestCase extends BaseTestCase
         }
     }
 
+    protected function usingThemeFolder(callable $callback): void
+    {
+        // Create a folder and configure a theme
+        $themeFolderName = 'testing_theme_' . str_shuffle(rtrim(base64_encode(time()), '='));
+        config()->set('view.theme', $themeFolderName);
+        $themeFolderPath = theme_path('');
+
+        // Create a theme folder and clean it up on application tear-down
+        File::makeDirectory($themeFolderPath);
+        $this->beforeApplicationDestroyed(fn() => File::deleteDirectory($themeFolderPath));
+
+        // Run provided callback with the theme env option set
+        $this->runWithEnv(['APP_THEME' => $themeFolderName], function () use ($callback, $themeFolderName) {
+            call_user_func($callback, $themeFolderName);
+        });
+    }
+
     /**
      * Check the keys and properties in the given map to include
      * exist, albeit not exclusively, within the map to check.
@@ -199,7 +217,7 @@ abstract class TestCase extends BaseTestCase
     {
         if ($response->status() === 403 && $response instanceof JsonResponse) {
             $errMessage = $response->getData(true)['error']['message'] ?? '';
-            return $errMessage === 'You do not have permission to perform the requested action.';
+            return str_contains($errMessage, 'do not have permission');
         }
 
         return $response->status() === 302

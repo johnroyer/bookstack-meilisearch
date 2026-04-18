@@ -106,16 +106,17 @@ return [
     'back_soon' => 'Niedługo zostanie uruchomiona ponownie.',
 
     // Import
-    'import_zip_cant_read' => 'Could not read ZIP file.',
-    'import_zip_cant_decode_data' => 'Could not find and decode ZIP data.json content.',
-    'import_zip_no_data' => 'ZIP file data has no expected book, chapter or page content.',
-    'import_validation_failed' => 'Import ZIP failed to validate with errors:',
-    'import_zip_failed_notification' => 'Failed to import ZIP file.',
-    'import_perms_books' => 'You are lacking the required permissions to create books.',
-    'import_perms_chapters' => 'You are lacking the required permissions to create chapters.',
-    'import_perms_pages' => 'You are lacking the required permissions to create pages.',
-    'import_perms_images' => 'You are lacking the required permissions to create images.',
-    'import_perms_attachments' => 'You are lacking the required permission to create attachments.',
+    'import_zip_cant_read' => 'Nie można odczytać archiwum ZIP.',
+    'import_zip_cant_decode_data' => 'Nie udało się odnaleźć i dekodować pliku data.json w zawartości archiwum ZIP.',
+    'import_zip_no_data' => 'Dane archiwum ZIP nie zawierają oczekiwanej zawartości książki, rozdziału lub strony.',
+    'import_zip_data_too_large' => 'Zawartość pliku data.json w archiwum ZIP przekracza maksymalny dopuszczalny rozmiar narzucony przez aktualną konfigurację aplikacji.',
+    'import_validation_failed' => 'Walidacja importu archiwum ZIP nie powiodła się z błędami:',
+    'import_zip_failed_notification' => 'Nie udało się zaimportować archiwum ZIP.',
+    'import_perms_books' => 'Brakuje Ci wymaganych uprawnień do tworzenia książek.',
+    'import_perms_chapters' => 'Brakuje Ci wymaganych uprawnień do tworzenia rozdziałów.',
+    'import_perms_pages' => 'Brakuje Ci wymaganych uprawnień do tworzenia stron.',
+    'import_perms_images' => 'Brakuje Ci wymaganych uprawnień do tworzenia zdjęć.',
+    'import_perms_attachments' => 'Brakuje Ci wymaganych uprawnień do tworzenia załączników.',
 
     // API errors
     'api_no_authorization_found' => 'Nie znaleziono tokenu autoryzacji dla żądania',
@@ -124,6 +125,7 @@ return [
     'api_incorrect_token_secret' => 'Podany sekret dla tego API jest nieprawidłowy',
     'api_user_no_api_permission' => 'Właściciel używanego tokenu API nie ma uprawnień do wykonywania zapytań do API',
     'api_user_token_expired' => 'Token uwierzytelniania wygasł',
+    'api_cookie_auth_only_get' => 'Only GET requests are allowed when using the API with cookie-based authentication',
 
     // Settings & Maintenance
     'maintenance_test_email_failure' => 'Błąd podczas wysyłania testowej wiadomości e-mail:',

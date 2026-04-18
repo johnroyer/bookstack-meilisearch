@@ -24,7 +24,8 @@ class ApiAuthTest extends TestCase
 
         $this->actingAs($viewer, 'standard');
 
-        $resp = $this->get($this->endpoint);
+        $this->startSession();
+        $resp = $this->withCredentials()->get($this->endpoint);
         $resp->assertStatus(200);
     }
 
@@ -75,6 +76,7 @@ class ApiAuthTest extends TestCase
     {
         $editor = $this->users->editor();
         $this->actingAs($editor, 'standard');
+        $this->startSession();
 
         $resp = $this->get($this->endpoint);
         $resp->assertStatus(200);
@@ -110,6 +112,28 @@ class ApiAuthTest extends TestCase
         setting()->put('app-public', true);
         $resp = $this->get($this->endpoint);
         $resp->assertStatus(200);
+    }
+
+    public function test_only_get_requests_are_supported_with_session_auth()
+    {
+        $user = $this->users->admin();
+        $this->actingAs($user, 'standard');
+        $this->startSession();
+
+        $uriByMethods = [
+            'POST' => '/books',
+            'PUT' => '/books/1',
+            'DELETE' => '/books/1',
+            'HEAD' => '/books',
+        ];
+
+        foreach ($uriByMethods as $method => $uri) {
+            $resp = $this->withCredentials()->json($method, "/api{$uri}");
+            $resp->assertStatus(403);
+            if ($method !== 'HEAD') {
+                $resp->assertJson($this->errorResponse('Only GET requests are allowed when using the API with cookie-based authentication', 403));
+            }
+        }
     }
 
     public function test_token_expiry_checked()

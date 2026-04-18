@@ -17,7 +17,14 @@ use ReflectionMethod;
 
 class ApiDocsGenerator
 {
+    /**
+     * @var array<string, ReflectionClass>
+     */
     protected array $reflectionClasses = [];
+
+    /**
+     * @var array<string, ApiController>
+     */
     protected array $controllerClasses = [];
 
     /**
@@ -83,10 +90,18 @@ class ApiDocsGenerator
     protected function loadDetailsFromControllers(Collection $routes): Collection
     {
         return $routes->map(function (array $route) {
+            $class = $this->getReflectionClass($route['controller']);
             $method = $this->getReflectionMethod($route['controller'], $route['controller_method']);
             $comment = $method->getDocComment();
-            $route['description'] = $comment ? $this->parseDescriptionFromMethodComment($comment) : null;
+            $route['description'] = $comment ? $this->parseDescriptionFromDocBlockComment($comment) : null;
             $route['body_params'] = $this->getBodyParamsFromClass($route['controller'], $route['controller_method']);
+
+            // Load class description for the model
+            // Not ideal to have it here on each route, but adding it in a more structured manner would break
+            // docs resulting JSON format and therefore be an API break.
+            // Save refactoring for a more significant set of changes.
+            $classComment = $class->getDocComment();
+            $route['model_description'] = $classComment ? $this->parseDescriptionFromDocBlockComment($classComment) : null;
 
             return $route;
         });
@@ -99,7 +114,6 @@ class ApiDocsGenerator
      */
     protected function getBodyParamsFromClass(string $className, string $methodName): ?array
     {
-        /** @var ApiController $class */
         $class = $this->controllerClasses[$className] ?? null;
         if ($class === null) {
             $class = app()->make($className);
@@ -140,12 +154,12 @@ class ApiDocsGenerator
     /**
      * Parse out the description text from a class method comment.
      */
-    protected function parseDescriptionFromMethodComment(string $comment): string
+    protected function parseDescriptionFromDocBlockComment(string $comment): string
     {
         $matches = [];
         preg_match_all('/^\s*?\*\s?($|((?![\/@\s]).*?))$/m', $comment, $matches);
 
-        $text = implode(' ', $matches[1] ?? []);
+        $text = implode(' ', $matches[1]);
         return str_replace('  ', "\n", $text);
     }
 
@@ -156,13 +170,23 @@ class ApiDocsGenerator
      */
     protected function getReflectionMethod(string $className, string $methodName): ReflectionMethod
     {
+        return $this->getReflectionClass($className)->getMethod($methodName);
+    }
+
+    /**
+     * Get a reflection class from the given class name.
+     *
+     * @throws ReflectionException
+     */
+    protected function getReflectionClass(string $className): ReflectionClass
+    {
         $class = $this->reflectionClasses[$className] ?? null;
         if ($class === null) {
             $class = new ReflectionClass($className);
             $this->reflectionClasses[$className] = $class;
         }
 
-        return $class->getMethod($methodName);
+        return $class;
     }
 
     /**
@@ -171,11 +195,12 @@ class ApiDocsGenerator
     protected function getFlatApiRoutes(): Collection
     {
         return collect(Route::getRoutes()->getRoutes())->filter(function ($route) {
-            return strpos($route->uri, 'api/') === 0;
+            return str_starts_with($route->uri, 'api/');
         })->map(function ($route) {
             [$controller, $controllerMethod] = explode('@', $route->action['uses']);
             $baseModelName = explode('.', explode('/', $route->uri)[1])[0];
-            $shortName = $baseModelName . '-' . $controllerMethod;
+            $controllerMethodKebab = Str::kebab($controllerMethod);
+            $shortName = $baseModelName . '-' . $controllerMethodKebab;
 
             return [
                 'name'                    => $shortName,
@@ -183,7 +208,7 @@ class ApiDocsGenerator
                 'method'                  => $route->methods[0],
                 'controller'              => $controller,
                 'controller_method'       => $controllerMethod,
-                'controller_method_kebab' => Str::kebab($controllerMethod),
+                'controller_method_kebab' => $controllerMethodKebab,
                 'base_model'              => $baseModelName,
             ];
         });

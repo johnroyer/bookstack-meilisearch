@@ -71,8 +71,8 @@ return [
     'book_not_found' => '책이 없습니다.',
     'page_not_found' => '문서가 없습니다.',
     'chapter_not_found' => '챕터가 없습니다.',
-    'selected_book_not_found' => '고른 책이 없습니다.',
-    'selected_book_chapter_not_found' => '고른 책이나 챕터가 없습니다.',
+    'selected_book_not_found' => '선택된 책이 없습니다.',
+    'selected_book_chapter_not_found' => '선택된 책이나 챕터가 없습니다',
     'guests_cannot_save_drafts' => 'Guest는 초안 문서를 보관할 수 없습니다.',
 
     // Users
@@ -109,6 +109,7 @@ return [
     'import_zip_cant_read' => 'ZIP 파일을 읽을 수 없습니다.',
     'import_zip_cant_decode_data' => 'ZIP data.json 콘텐츠를 찾아서 디코딩할 수 없습니다.',
     'import_zip_no_data' => '컨텐츠 ZIP 파일 데이터에 데이터가 비어있습니다.',
+    'import_zip_data_too_large' => 'ZIP data.json content exceeds the configured application maximum upload size.',
     'import_validation_failed' => '컨텐츠 ZIP 파일을 가져오려다 실패했습니다. 이유:',
     'import_zip_failed_notification' => '컨텐츠 ZIP 파일을 가져오지 못했습니다.',
     'import_perms_books' => '책을 만드는 데 필요한 권한이 없습니다.',
@@ -124,6 +125,7 @@ return [
     'api_incorrect_token_secret' => 'API 토큰이 제공한 암호에 문제가 있습니다.',
     'api_user_no_api_permission' => 'API 토큰의 소유자가 API를 호출할 권한이 없습니다.',
     'api_user_token_expired' => '인증 토큰이 만료되었습니다.',
+    'api_cookie_auth_only_get' => 'Only GET requests are allowed when using the API with cookie-based authentication',
 
     // Settings & Maintenance
     'maintenance_test_email_failure' => '메일을 발송하는 도중 문제가 생겼습니다:',

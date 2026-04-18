@@ -6,6 +6,7 @@ use BookStack\Activity\ActivityType;
 use BookStack\Activity\Models\Activity;
 use BookStack\Activity\Models\Loggable;
 use BookStack\Activity\Notifications\Handlers\CommentCreationNotificationHandler;
+use BookStack\Activity\Notifications\Handlers\CommentMentionNotificationHandler;
 use BookStack\Activity\Notifications\Handlers\NotificationHandler;
 use BookStack\Activity\Notifications\Handlers\PageCreationNotificationHandler;
 use BookStack\Activity\Notifications\Handlers\PageUpdateNotificationHandler;
@@ -14,14 +15,14 @@ use BookStack\Users\Models\User;
 class NotificationManager
 {
     /**
-     * @var class-string<NotificationHandler>[]
+     * @var array<string, class-string<NotificationHandler>[]>
      */
-    protected array $handlers = [];
+    protected array $handlersByActivity = [];
 
     public function handle(Activity $activity, string|Loggable $detail, User $user): void
     {
         $activityType = $activity->type;
-        $handlersToRun = $this->handlers[$activityType] ?? [];
+        $handlersToRun = $this->handlersByActivity[$activityType] ?? [];
         foreach ($handlersToRun as $handlerClass) {
             /** @var NotificationHandler $handler */
             $handler = new $handlerClass();
@@ -34,12 +35,12 @@ class NotificationManager
      */
     public function registerHandler(string $activityType, string $handlerClass): void
     {
-        if (!isset($this->handlers[$activityType])) {
-            $this->handlers[$activityType] = [];
+        if (!isset($this->handlersByActivity[$activityType])) {
+            $this->handlersByActivity[$activityType] = [];
         }
 
-        if (!in_array($handlerClass, $this->handlers[$activityType])) {
-            $this->handlers[$activityType][] = $handlerClass;
+        if (!in_array($handlerClass, $this->handlersByActivity[$activityType])) {
+            $this->handlersByActivity[$activityType][] = $handlerClass;
         }
     }
 
@@ -48,5 +49,7 @@ class NotificationManager
         $this->registerHandler(ActivityType::PAGE_CREATE, PageCreationNotificationHandler::class);
         $this->registerHandler(ActivityType::PAGE_UPDATE, PageUpdateNotificationHandler::class);
         $this->registerHandler(ActivityType::COMMENT_CREATE, CommentCreationNotificationHandler::class);
+        $this->registerHandler(ActivityType::COMMENT_CREATE, CommentMentionNotificationHandler::class);
+        $this->registerHandler(ActivityType::COMMENT_UPDATE, CommentMentionNotificationHandler::class);
     }
 }

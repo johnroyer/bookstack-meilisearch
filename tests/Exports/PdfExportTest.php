@@ -17,7 +17,7 @@ class PdfExportTest extends TestCase
 
         $resp = $this->get($page->getUrl('/export/pdf'));
         $resp->assertStatus(200);
-        $resp->assertHeader('Content-Disposition', 'attachment; filename="' . $page->slug . '.pdf"');
+        $resp->assertHeader('Content-Disposition', 'attachment; filename*=UTF-8\'\'' . $page->slug . '.pdf');
     }
 
     public function test_book_pdf_export()
@@ -28,7 +28,7 @@ class PdfExportTest extends TestCase
 
         $resp = $this->get($book->getUrl('/export/pdf'));
         $resp->assertStatus(200);
-        $resp->assertHeader('Content-Disposition', 'attachment; filename="' . $book->slug . '.pdf"');
+        $resp->assertHeader('Content-Disposition', 'attachment; filename*=UTF-8\'\'' . $book->slug . '.pdf');
     }
 
     public function test_chapter_pdf_export()
@@ -38,7 +38,7 @@ class PdfExportTest extends TestCase
 
         $resp = $this->get($chapter->getUrl('/export/pdf'));
         $resp->assertStatus(200);
-        $resp->assertHeader('Content-Disposition', 'attachment; filename="' . $chapter->slug . '.pdf"');
+        $resp->assertHeader('Content-Disposition', 'attachment; filename*=UTF-8\'\'' . $chapter->slug . '.pdf');
     }
 
 

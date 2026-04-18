@@ -177,7 +177,7 @@ Alexander Predl (Harveyhase68) :: German
 Rem (Rem9000) :: Dutch
 Michał Stelmach (stelmach-web) :: Polish
 arniom :: French
-REMOVED_USER :: French; Dutch; Portuguese, Brazilian; Portuguese; Turkish; 
+REMOVED_USER :: French; German; Dutch; Portuguese, Brazilian; Portuguese; Turkish; 
 林祖年 (contagion) :: Chinese Traditional
 Siamak Guodarzi (siamakgoudarzi88) :: Persian
 Lis Maestrelo (lismtrl) :: Portuguese, Brazilian
@@ -222,7 +222,7 @@ SmokingCrop :: Dutch
 Maciej Lebiest (Szwendacz) :: Polish
 DiscordDigital :: German; German Informal
 Gábor Marton (dodver) :: Hungarian
-Jasell :: Swedish
+Jakob Åsell (Jasell) :: Swedish
 Ghost_chu (ghostchu) :: Chinese Simplified
 Ravid Shachar (ravidshachar) :: Hebrew
 Helga Guchshenskaya (guchshenskaya) :: Russian
@@ -444,7 +444,7 @@ Irjan Olsen (Irch) :: Norwegian Bokmal
 Aleksandar Jovanovic (jovanoviczaleksandar) :: Serbian (Cyrillic)
 Red (RedVortex) :: Hebrew
 xgrug :: Chinese Simplified
-HrCalmar :: Danish
+Calle Calmar (HrCalmar) :: Danish
 Avishay Rapp (AvishayRapp) :: Hebrew
 matthias4217 :: French
 Berke BOYLU2 (berkeboylu2) :: Turkish
@@ -509,3 +509,31 @@ iamwhoiamwhoami :: Swedish
 Grogui :: French
 MrCharlesIII :: Arabic
 David Olsen (dawin) :: Danish
+ltnzr :: French
+Frank Holler (holler.frank) :: German; German Informal
+Korab Arifi (korabidev) :: Albanian
+Petr Husák (petrhusak) :: Czech
+Bernardo Maia (bernardo.bmaia2) :: Portuguese, Brazilian
+Amr (amr3k) :: Arabic
+Tahsin Ahmed (tahsinahmed2012) :: Bengali
+bojan_che :: Serbian (Cyrillic)
+setiawan setiawan (culture.setiawan) :: Indonesian
+Donald Mac Kenzie (kiuman) :: Norwegian Bokmal
+Gabriel Silver (GabrielBSilver) :: Hebrew
+Tomas Darius Davainis (Tomasdd) :: Lithuanian
+CriedHero :: Chinese Simplified
+Henrik (henrik2105) :: Norwegian Bokmal
+FoW (fofwisdom) :: Korean
+serinf-lauza :: French
+Diyan Nikolaev (nikolaev.diyan) :: Bulgarian
+Shadluk Avan (quldosh) :: Uzbek
+Marci (MartonPoto) :: Hungarian
+Michał Sadurski (wheeskeey) :: Polish
+JanDziaslo :: Polish
+Charllys Fernandes (CharllysFernandes) :: Portuguese, Brazilian
+Ilgiz Zigangirov (inov8) :: Russian
+Max Israelsson (Blezie) :: Swedish
+Skiddybison5924 (chris-devel0per) :: German
+Veyilla Nightwhisper (Veyilla) :: German
+João Barbosa (hypeedd) :: Portuguese
+Abcdefg Hijklmn (collatek) :: Korean

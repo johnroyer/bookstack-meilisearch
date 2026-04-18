@@ -81,8 +81,7 @@ function setting(?string $key = null, mixed $default = null): mixed
 
 /**
  * Get a path to a theme resource.
- * Returns null if a theme is not configured and
- * therefore a full path is not available for use.
+ * Returns null if a theme is not configured, and therefore a full path is not available for use.
  */
 function theme_path(string $path = ''): ?string
 {

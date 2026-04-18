@@ -109,6 +109,7 @@ return [
     'import_zip_cant_read' => 'Kon het Zip-bestand niet lezen.',
     'import_zip_cant_decode_data' => 'Kon de data.json Zip-inhoud niet vinden of decoderen.',
     'import_zip_no_data' => 'Zip-bestand bevat niet de verwachte boek, hoofdstuk of pagina-inhoud.',
+    'import_zip_data_too_large' => 'De inhoud van data.json in de ZIP overschrijdt de ingestelde maximum upload grootte.',
     'import_validation_failed' => 'De validatie van het Zip-bestand is mislukt met de volgende fouten:',
     'import_zip_failed_notification' => 'Importeren van het Zip-bestand is mislukt.',
     'import_perms_books' => 'Je mist de vereiste machtigingen om boeken te maken.',
@@ -124,6 +125,7 @@ return [
     'api_incorrect_token_secret' => 'Het opgegeven geheim voor de API-token is onjuist',
     'api_user_no_api_permission' => 'De eigenaar van de gebruikte API-token heeft geen machtiging om API calls te maken',
     'api_user_token_expired' => 'De gebruikte autorisatie token is verlopen',
+    'api_cookie_auth_only_get' => 'Only GET requests are allowed when using the API with cookie-based authentication',
 
     // Settings & Maintenance
     'maintenance_test_email_failure' => 'Fout opgetreden bij het verzenden van een test email:',

@@ -11,13 +11,36 @@
         <input type="hidden" name="section" value="sorting">
 
         <div class="setting-list">
+            <div>
+                <div class="mb-m">
+                    <label class="setting-list-label">{{ trans('settings.sorting_page_limits') }}</label>
+                    <p class="small">{{ trans('settings.sorting_page_limits_desc') }}</p>
+                </div>
+                <div class="flex-container-row wrap gap-m small-inputs">
+                    @php
+                        $labelByKey = ['shelves' => trans('entities.shelves'), 'books' => trans('entities.books'), 'search' => trans('entities.search_results')];
+                    @endphp
+                    @foreach($labelByKey as $key => $label)
+                        <div>
+                            <label for="setting-lists-page-count-{{ $key }}">{{ $label }}</label>
+                            @include('form.number', [
+                                'name' => 'setting-lists-page-count-' . $key,
+                                'value' => setting()->getInteger('lists-page-count-' . $key, 18, 1, 1000),
+                                'min' => 1,
+                                'step' => 1,
+                            ])
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+
             <div class="grid half gap-xl items-center">
                 <div>
                     <label for="setting-sorting-book-default"
                            class="setting-list-label">{{ trans('settings.sorting_book_default') }}</label>
-                    <p class="small">{{ trans('settings.sorting_book_default_desc') }}</p>
+                    <p class="small mb-s">{{ trans('settings.sorting_book_default_desc') }}</p>
                 </div>
-                <div>
+                <div class="pt-s">
                     <select id="setting-sorting-book-default" name="setting-sorting-book-default"
                             @if($errors->has('setting-sorting-book-default')) class="neg" @endif>
                         <option value="0" @if(intval(setting('sorting-book-default', '0')) === 0) selected @endif>
@@ -31,6 +54,9 @@
                             </option>
                         @endforeach
                     </select>
+                    <p class="small">
+                        <a href="{{ url('/settings/sorting/rules/new') }}" class="text-button" target="_blank">{{ trans('settings.sort_rule_create') }}</a>
+                    </p>
                 </div>
             </div>
 

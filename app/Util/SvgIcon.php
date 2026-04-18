@@ -2,6 +2,8 @@
 
 namespace BookStack\Util;
 
+use BookStack\Facades\Theme;
+
 class SvgIcon
 {
     public function __construct(
@@ -23,12 +25,9 @@ class SvgIcon
             $attrString .= $attrName . '="' . $attr . '" ';
         }
 
-        $iconPath = resource_path('icons/' . $this->name . '.svg');
-        $themeIconPath = theme_path('icons/' . $this->name . '.svg');
-
-        if ($themeIconPath && file_exists($themeIconPath)) {
-            $iconPath = $themeIconPath;
-        } elseif (!file_exists($iconPath)) {
+        $defaultIconPath = resource_path('icons/' . $this->name . '.svg');
+        $iconPath = Theme::findFirstFile("icons/{$this->name}.svg") ?? $defaultIconPath;
+        if (!file_exists($iconPath)) {
             return '';
         }
 

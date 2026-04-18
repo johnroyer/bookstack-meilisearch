@@ -144,7 +144,7 @@ class SearchIndex
         $termMap = $this->textToTermCountMap($text);
 
         foreach ($termMap as $term => $count) {
-            $termMap[$term] = floor($count * $scoreAdjustment);
+            $termMap[$term] = intval($count * $scoreAdjustment);
         }
 
         return $termMap;

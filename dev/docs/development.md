@@ -3,11 +3,11 @@
 All development on BookStack is currently done on the `development` branch. 
 When it's time for a release the `development` branch is merged into release with built & minified CSS & JS then tagged at its version. Here are the current development requirements:
 
-* [Node.js](https://nodejs.org/en/) v20.0+
+* [Node.js](https://nodejs.org/en/) v22.0+
 
 ## Building CSS & JavaScript Assets
 
-This project uses SASS for CSS development and this is built, along with the JavaScript, using a range of npm scripts. The below npm commands can be used to install the dependencies & run the build tasks:
+This project uses SASS for CSS development which is built, along with the JavaScript, using a range of npm scripts. The below npm commands can be used to install the dependencies & run the build tasks:
 
 ``` bash
 # Install NPM Dependencies
@@ -37,7 +37,7 @@ We use tools to manage code standards and formatting within the project. If subm
 
 ### PHP
 
-PHP code standards are managed by [using PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer).
+PHP code standards are managed by [using PHP_CodeSniffer](https://github.com/PHPCSStandards/PHP_CodeSniffer).
 Static analysis is in place using [PHPStan](https://phpstan.org/) & [Larastan](https://github.com/nunomaduro/larastan).
 The below commands can be used to utilise these tools:
 
@@ -113,4 +113,4 @@ docker-compose run app php vendor/bin/phpunit
 ### Debugging
 
 The docker-compose setup ships with Xdebug, which you can listen to on port 9090.
-NB : For some editors like Visual Studio Code, you might need to map your workspace folder to the /app folder within the docker container for this to work.
+NB: For some editors like Visual Studio Code, you might need to map your workspace folder to the /app folder within the docker container for this to work.

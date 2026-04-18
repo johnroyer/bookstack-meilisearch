@@ -109,6 +109,7 @@ return [
     'import_zip_cant_read' => '無法讀取 ZIP 檔案。',
     'import_zip_cant_decode_data' => '無法尋找並解碼 ZIP data.json 內容。',
     'import_zip_no_data' => 'ZIP 檔案資料沒有預期的書本、章節或頁面內容。',
+    'import_zip_data_too_large' => 'ZIP 檔案 data.json 的內容超過了設定的應用程式最大上傳大小。',
     'import_validation_failed' => '匯入 ZIP 驗證失敗，發生錯誤：',
     'import_zip_failed_notification' => '匯入 ZIP 檔案失敗。',
     'import_perms_books' => '您缺乏建立書本所需的權限。',
@@ -124,6 +125,7 @@ return [
     'api_incorrect_token_secret' => '給定使用的 API 權杖的密碼錯誤',
     'api_user_no_api_permission' => '使用的 API 權杖擁有者無權呼叫 API',
     'api_user_token_expired' => '使用的授權權杖已過期',
+    'api_cookie_auth_only_get' => 'Only GET requests are allowed when using the API with cookie-based authentication',
 
     // Settings & Maintenance
     'maintenance_test_email_failure' => '寄送測試電子郵件時發生錯誤:',

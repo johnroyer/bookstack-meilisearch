@@ -109,6 +109,7 @@ return [
     'import_zip_cant_read' => 'Nevarēja nolasīt ZIP failu.',
     'import_zip_cant_decode_data' => 'Nevarēja atrast un nolasīt data.json saturu ZIP failā.',
     'import_zip_no_data' => 'ZIP faila datos nav atrasts grāmatu, nodaļu vai lapu saturs.',
+    'import_zip_data_too_large' => 'ZIP data.json content exceeds the configured application maximum upload size.',
     'import_validation_failed' => 'ZIP faila imports ir neveiksmīgs ar šādām kļūdām:',
     'import_zip_failed_notification' => 'ZIP faila imports ir neveiksmīgs.',
     'import_perms_books' => 'Jums nav nepieciešamo tiesību izveidot grāmatas.',
@@ -124,6 +125,7 @@ return [
     'api_incorrect_token_secret' => 'Norādītā slepenā atslēga izmantotajam API žetonam nav pareiza',
     'api_user_no_api_permission' => 'Izmantotā API žetona īpašniekam nav tiesības veikt API izsaukumus',
     'api_user_token_expired' => 'Autorizācijas žetona derīguma termiņš ir izbeidzies',
+    'api_cookie_auth_only_get' => 'Only GET requests are allowed when using the API with cookie-based authentication',
 
     // Settings & Maintenance
     'maintenance_test_email_failure' => 'Radusies kļūda sūtot testa epastu:',

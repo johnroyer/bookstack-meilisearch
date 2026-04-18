@@ -8,15 +8,25 @@ use Illuminate\Http\JsonResponse;
 
 abstract class ApiController extends Controller
 {
+    /**
+     * The validation rules for this controller.
+     * Can alternative be defined in a rules() method is they need to be dynamic.
+     *
+     * @var array<string, array<string, string[]>>
+     */
     protected array $rules = [];
 
     /**
      * Provide a paginated listing JSON response in a standard format
      * taking into account any pagination parameters passed by the user.
      */
-    protected function apiListingResponse(Builder $query, array $fields, array $modifiers = []): JsonResponse
+    protected function apiListingResponse(Builder $query, array $fields, array $modifiers = [], array $filterableFields = []): JsonResponse
     {
         $listing = new ListingResponseBuilder($query, request(), $fields);
+
+        if (count($filterableFields) > 0) {
+            $listing->setFilterableFields($filterableFields);
+        }
 
         foreach ($modifiers as $modifier) {
             $listing->modifyResults($modifier);

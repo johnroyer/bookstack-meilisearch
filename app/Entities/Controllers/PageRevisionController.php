@@ -12,6 +12,8 @@ use BookStack\Exceptions\NotFoundException;
 use BookStack\Facades\Activity;
 use BookStack\Http\Controller;
 use BookStack\Permissions\Permission;
+use BookStack\Util\HtmlContentFilter;
+use BookStack\Util\HtmlContentFilterConfig;
 use BookStack\Util\SimpleListOptions;
 use Illuminate\Http\Request;
 use Ssddanbrown\HtmlDiff\Diff;
@@ -101,12 +103,15 @@ class PageRevisionController extends Controller
 
         $prev = $revision->getPreviousRevision();
         $prevContent = $prev->html ?? '';
-        $diff = Diff::excecute($prevContent, $revision->html);
+
+        // TODO - Refactor PageContent so we can de-dupe these steps
+        $rawDiff = Diff::excecute($prevContent, $revision->html);
+        $filterConfig = HtmlContentFilterConfig::fromConfigString(config('app.content_filtering'));
+        $filter = new HtmlContentFilter($filterConfig);
+        $diff = $filter->filterString($rawDiff);
 
         $page->fill($revision->toArray());
-        // TODO - Refactor PageContent so we don't need to juggle this
-        $page->html = $revision->html;
-        $page->html = (new PageContent($page))->render();
+        $page->html = '';
         $this->setPageTitle(trans('entities.pages_revision_named', ['pageName' => $page->getShortName()]));
 
         return view('pages.revision', [

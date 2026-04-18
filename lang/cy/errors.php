@@ -109,6 +109,7 @@ return [
     'import_zip_cant_read' => 'Wedi methu darllen ffeil ZIP.',
     'import_zip_cant_decode_data' => 'Wedi methu ffeindio a dadgodio cynnwys ZIP data.json.',
     'import_zip_no_data' => 'Nid oes cynnwys llyfr, pennod neu dudalen disgwyliedig yn nata ffeil ZIP.',
+    'import_zip_data_too_large' => 'ZIP data.json content exceeds the configured application maximum upload size.',
     'import_validation_failed' => 'ZIP mewnforyn wedi\'i methu dilysu gyda gwallau:',
     'import_zip_failed_notification' => 'Wedi methu mewnforio ffeil ZIP.',
     'import_perms_books' => 'Dych chi\'n methu\'r caniatâd gofynnol i greu llyfrau.',
@@ -124,6 +125,7 @@ return [
     'api_incorrect_token_secret' => 'Mae\'r gyfrinach a ddarparwyd ar gyfer y tocyn API defnyddiedig a roddwyd yn anghywir',
     'api_user_no_api_permission' => 'Nid oes gan berchennog y tocyn API a ddefnyddiwyd ganiatâd i wneud galwadau API',
     'api_user_token_expired' => 'Mae\'r tocyn awdurdodi a ddefnyddiwyd wedi dod i ben',
+    'api_cookie_auth_only_get' => 'Only GET requests are allowed when using the API with cookie-based authentication',
 
     // Settings & Maintenance
     'maintenance_test_email_failure' => 'Gwall a daflwyd wrth anfon e-bost prawf:',

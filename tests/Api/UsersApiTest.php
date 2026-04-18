@@ -80,7 +80,7 @@ class UsersApiTest extends TestCase
         /** @var ActivityModel $activity */
         $activity = ActivityModel::query()->where('user_id', '=', $user->id)->latest()->first();
 
-        $resp = $this->asAdmin()->getJson($this->baseEndpoint . '?filter[id]=3');
+        $resp = $this->actingAsApiAdmin()->getJson($this->baseEndpoint . '?filter[id]=3');
         $resp->assertJson(['data' => [
             [
                 'id'          => $user->id,

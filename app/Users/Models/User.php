@@ -11,7 +11,6 @@ use BookStack\Activity\Models\Watch;
 use BookStack\Api\ApiToken;
 use BookStack\App\Model;
 use BookStack\App\SluggableInterface;
-use BookStack\Entities\Tools\SlugGenerator;
 use BookStack\Permissions\Permission;
 use BookStack\Translation\LocaleDefinition;
 use BookStack\Translation\LocaleManager;
@@ -223,8 +222,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public function getAvatar(int $size = 50): string
     {
         $default = url('/user_avatar.png');
-        $imageId = $this->image_id;
-        if ($imageId === 0 || $imageId === '0' || $imageId === null) {
+        if ($this->image_id === 0) {
             return $default;
         }
 
@@ -357,15 +355,5 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public function logDescriptor(): string
     {
         return "({$this->id}) {$this->name}";
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function refreshSlug(): string
-    {
-        $this->slug = app()->make(SlugGenerator::class)->generate($this, $this->name);
-
-        return $this->slug;
     }
 }

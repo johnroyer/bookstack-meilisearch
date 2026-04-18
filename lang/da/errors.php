@@ -109,6 +109,7 @@ return [
     'import_zip_cant_read' => 'Kunne ikke læse ZIP-filen.',
     'import_zip_cant_decode_data' => 'Kunne ikke finde og afkode ZIP data.json-indhold.',
     'import_zip_no_data' => 'ZIP-filens data har ikke noget forventet bog-, kapitel- eller sideindhold.',
+    'import_zip_data_too_large' => 'Indholdet af ZIP data.json overstiger den konfigurerede maksimale uploadstørrelse for applikationen.',
     'import_validation_failed' => 'Import ZIP kunne ikke valideres med fejl:',
     'import_zip_failed_notification' => 'Kunne ikke importere ZIP-fil.',
     'import_perms_books' => 'Du mangler de nødvendige tilladelser til at oprette bøger.',
@@ -124,6 +125,7 @@ return [
     'api_incorrect_token_secret' => 'Hemmeligheden leveret til det givne anvendte API-token er forkert',
     'api_user_no_api_permission' => 'Ejeren af den brugte API token har ikke adgang til at foretage API-kald',
     'api_user_token_expired' => 'Den brugte godkendelsestoken er udløbet',
+    'api_cookie_auth_only_get' => 'Der tillades kun GET-anmodninger, når API\'et bruges med cookie-baseret godkendelse',
 
     // Settings & Maintenance
     'maintenance_test_email_failure' => 'Følgende fejl opstod under afsendelse af testemail:',

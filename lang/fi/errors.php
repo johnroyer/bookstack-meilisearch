@@ -110,6 +110,7 @@ Sovellus ei tunnista ulkoisen todennuspalvelun pyyntöä. Ongelman voi aiheuttaa
     'import_zip_cant_read' => 'ZIP-tiedostoa ei voitu lukea.',
     'import_zip_cant_decode_data' => 'ZIP-tiedoston data.json sisältöä ei löydy eikä sitä voitu purkaa.',
     'import_zip_no_data' => 'ZIP-tiedostoilla ei ole odotettua kirjaa, lukua tai sivun sisältöä.',
+    'import_zip_data_too_large' => 'ZIP data.json content exceeds the configured application maximum upload size.',
     'import_validation_failed' => 'Tuonti ZIP epäonnistui virheiden kanssa:',
     'import_zip_failed_notification' => 'ZIP-tiedoston tuominen epäonnistui.',
     'import_perms_books' => 'Sinulla ei ole tarvittavia oikeuksia luoda kirjoja.',
@@ -125,6 +126,7 @@ Sovellus ei tunnista ulkoisen todennuspalvelun pyyntöä. Ongelman voi aiheuttaa
     'api_incorrect_token_secret' => 'API-tunnisteelle annettu salainen avain on virheellinen',
     'api_user_no_api_permission' => 'Käytetyn API-tunnisteen omistajalla ei ole oikeutta tehdä API-kutsuja',
     'api_user_token_expired' => 'Käytetty valtuutuskoodi on vanhentunut',
+    'api_cookie_auth_only_get' => 'Only GET requests are allowed when using the API with cookie-based authentication',
 
     // Settings & Maintenance
     'maintenance_test_email_failure' => 'Virhe testisähköpostia lähetettäessä:',

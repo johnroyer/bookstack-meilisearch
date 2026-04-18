@@ -252,7 +252,7 @@ class ChaptersApiTest extends TestCase
     {
         $editor = $this->users->editor();
         $this->permissions->removeUserRolePermissions($editor, ['chapter-delete-all', 'chapter-delete-own']);
-        $this->actingAs($editor);
+        $this->actingAsForApi($editor);
         $chapter = $this->entities->chapterHasPages();
         $newBook = Book::query()->where('id', '!=', $chapter->book_id)->first();
 

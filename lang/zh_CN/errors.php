@@ -68,11 +68,11 @@ return [
     // Entities
     'entity_not_found' => '未找到项目',
     'bookshelf_not_found' => '未找到书架',
-    'book_not_found' => '未找到图书',
+    'book_not_found' => '未找到书籍',
     'page_not_found' => '未找到页面',
     'chapter_not_found' => '未找到章节',
     'selected_book_not_found' => '选中的书未找到',
-    'selected_book_chapter_not_found' => '未找到所选的图书或章节',
+    'selected_book_chapter_not_found' => '未找到所选的书籍或章节',
     'guests_cannot_save_drafts' => '访客不能保存草稿',
 
     // Users
@@ -109,6 +109,7 @@ return [
     'import_zip_cant_read' => '无法读取 ZIP 文件。',
     'import_zip_cant_decode_data' => '无法找到并解码 ZIP data.json 内容。',
     'import_zip_no_data' => 'ZIP 文件数据没有预期的书籍、章节或页面内容。',
+    'import_zip_data_too_large' => '超出最大上传大小。',
     'import_validation_failed' => '导入 ZIP 验证失败，出现错误：',
     'import_zip_failed_notification' => 'ZIP 文件导入失败。',
     'import_perms_books' => '您缺少创建书籍所需的权限。',
@@ -124,6 +125,7 @@ return [
     'api_incorrect_token_secret' => '给已给出的API所提供的密钥不正确',
     'api_user_no_api_permission' => '使用过的 API 令牌的所有者没有进行API 调用的权限',
     'api_user_token_expired' => '所使用的身份令牌已过期',
+    'api_cookie_auth_only_get' => '使用基于 Cookie 的身份验证 API 时，仅允许 GET 请求。',
 
     // Settings & Maintenance
     'maintenance_test_email_failure' => '发送测试电子邮件时出现错误：',

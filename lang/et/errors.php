@@ -109,6 +109,7 @@ return [
     'import_zip_cant_read' => 'ZIP-faili lugemine ebaõnnestus.',
     'import_zip_cant_decode_data' => 'ZIP-failist ei leitud data.json sisu.',
     'import_zip_no_data' => 'ZIP-failist ei leitud raamatute, peatükkide või lehtede sisu.',
+    'import_zip_data_too_large' => 'ZIP-faili data.json sisu ületab rakenduses seadistatud maksimaalse failisuuruse.',
     'import_validation_failed' => 'Imporditud ZIP-faili valideerimine ebaõnnestus vigadega:',
     'import_zip_failed_notification' => 'ZIP-faili importimine ebaõnnestus.',
     'import_perms_books' => 'Sul puuduvad õigused raamatute lisamiseks.',
@@ -124,6 +125,7 @@ return [
     'api_incorrect_token_secret' => 'API tunnusele lisatud salajane võti ei ole korrektne',
     'api_user_no_api_permission' => 'Selle API tunnuse omanikul ei ole õigust API päringuid teha',
     'api_user_token_expired' => 'Volitustunnus on aegunud',
+    'api_cookie_auth_only_get' => 'Küpsistega autentimisel on API kasutamisel lubatud ainult GET päringud',
 
     // Settings & Maintenance
     'maintenance_test_email_failure' => 'Test e-kirja saatmisel tekkis viga:',

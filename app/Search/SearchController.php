@@ -7,6 +7,7 @@ use BookStack\Entities\Queries\QueryPopular;
 use BookStack\Entities\Tools\SiblingFetcher;
 use BookStack\Http\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Meilisearch\Client;
 
 class SearchController extends Controller
@@ -28,13 +29,20 @@ class SearchController extends Controller
 
         $page = intval($request->get('page', '0')) ?: 1;
         $nextPageLink = url('/search?term=' . urlencode($fullSearchString) . '&page=' . ($page + 1));
+        $count = setting()->getInteger('lists-page-count-search', 18, 1, 1000);
 
-        $results = $this->searchRunner->searchEntities($searchOpts, 'all', $page, 20);
+        $results = $this->searchRunner->searchEntities($searchOpts, 'all', $page, $count);
         $formatter->format($results['results']->all(), $searchOpts);
+        $paginator = new LengthAwarePaginator($results['results'], $results['total'], $count, $page);
+        $paginator->setPath(url('/search'));
+        $paginator->appends($request->except('page'));
+
+        $this->setPageTitle(trans('entities.search_for_term', ['term' => $fullSearchString]));
 
         return view('search.all', [
             'entities'     => $results['results'],
             'totalResults' => $results['total'],
+            'paginator'    => $paginator,
             'searchTerm'   => $fullSearchString,
             'hasNextPage'  => $results['has_more'],
             'nextPageLink' => $nextPageLink,
@@ -125,8 +133,12 @@ class SearchController extends Controller
         );
         $entities = $meilisearch->search($request->get('term'))['results'];
 
+        foreach ($entities as $entity) {
+            $entity->setAttribute('preview_content', '');
+        }
+
         return view('search.parts.entity-suggestion-list', [
-            'entities' => $entities->slice(0, 6)
+            'entities' => $entities->slice(0, 5)
         ]);
     }
 

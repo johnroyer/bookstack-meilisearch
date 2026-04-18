@@ -109,6 +109,7 @@ return [
     'import_zip_cant_read' => 'Gat ekki lesið ZIP skrá.',
     'import_zip_cant_decode_data' => 'Fann ekki ZIP data.json innihald.',
     'import_zip_no_data' => 'ZIP skráin inniheldur ekkert efni.',
+    'import_zip_data_too_large' => 'ZIP data.json content exceeds the configured application maximum upload size.',
     'import_validation_failed' => 'ZIP skráin stóðst ekki staðfestingu og skilaði villu:',
     'import_zip_failed_notification' => 'Gat ekki lesið inn ZIP skrá.',
     'import_perms_books' => 'Þú hefur ekki heimild til að búa til bækur.',
@@ -124,6 +125,7 @@ return [
     'api_incorrect_token_secret' => 'Leyndarmálið sem gefið var upp fyrir API tókann er rangt',
     'api_user_no_api_permission' => 'Eigandi API tókans hefur ekki heimild til að gera API köll',
     'api_user_token_expired' => 'Auðkenningar tókin er útrunninn',
+    'api_cookie_auth_only_get' => 'Only GET requests are allowed when using the API with cookie-based authentication',
 
     // Settings & Maintenance
     'maintenance_test_email_failure' => 'Villa kom upp viðað reyna senda prufu tölvupóst:',

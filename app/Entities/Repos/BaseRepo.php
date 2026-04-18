@@ -8,12 +8,15 @@ use BookStack\Entities\Models\HasCoverInterface;
 use BookStack\Entities\Models\HasDescriptionInterface;
 use BookStack\Entities\Models\Entity;
 use BookStack\Entities\Queries\PageQueries;
+use BookStack\Entities\Tools\SlugGenerator;
+use BookStack\Entities\Tools\SlugHistory;
 use BookStack\Exceptions\ImageUploadException;
 use BookStack\References\ReferenceStore;
 use BookStack\References\ReferenceUpdater;
 use BookStack\Sorting\BookSorter;
 use BookStack\Uploads\ImageRepo;
 use BookStack\Util\HtmlDescriptionFilter;
+use BookStack\Util\HtmlToPlainText;
 use Illuminate\Http\UploadedFile;
 
 class BaseRepo
@@ -25,6 +28,8 @@ class BaseRepo
         protected ReferenceStore $referenceStore,
         protected PageQueries $pageQueries,
         protected BookSorter $bookSorter,
+        protected SlugGenerator $slugGenerator,
+        protected SlugHistory $slugHistory,
     ) {
     }
 
@@ -43,7 +48,7 @@ class BaseRepo
             'updated_by' => user()->id,
             'owned_by'   => user()->id,
         ]);
-        $entity->refreshSlug();
+        $this->refreshSlug($entity);
 
         if ($entity instanceof HasDescriptionInterface) {
             $this->updateDescription($entity, $input);
@@ -78,7 +83,7 @@ class BaseRepo
         $entity->updated_by = user()->id;
 
         if ($entity->isDirty('name') || empty($entity->slug)) {
-            $entity->refreshSlug();
+            $this->refreshSlug($entity);
         }
 
         if ($entity instanceof HasDescriptionInterface) {
@@ -147,12 +152,22 @@ class BaseRepo
         }
 
         if (isset($input['description_html'])) {
+            $plainTextConverter = new HtmlToPlainText();
             $entity->descriptionInfo()->set(
                 HtmlDescriptionFilter::filterFromString($input['description_html']),
-                html_entity_decode(strip_tags($input['description_html']))
+                $plainTextConverter->convert($input['description_html']),
             );
         } else if (isset($input['description'])) {
             $entity->descriptionInfo()->set('', $input['description']);
         }
+    }
+
+    /**
+     * Refresh the slug for the given entity.
+     */
+    public function refreshSlug(Entity $entity): void
+    {
+        $this->slugHistory->recordForEntity($entity);
+        $this->slugGenerator->regenerateForEntity($entity);
     }
 }

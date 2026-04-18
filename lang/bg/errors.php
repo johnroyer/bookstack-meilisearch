@@ -10,7 +10,7 @@ return [
 
     // Auth
     'error_user_exists_different_creds' => 'Потребител с емайл :email вече съществува но с други данни.',
-    'auth_pre_register_theme_prevention' => 'User account could not be registered for the provided details',
+    'auth_pre_register_theme_prevention' => 'Потребителски профил не може да бъде създаден с посочената информация',
     'email_already_confirmed' => 'Емейлът вече беше потвърден. Моля опитрайте да влезете.',
     'email_confirmation_invalid' => 'Този код за достъп не е валиден или вече е бил използван, Моля опитай да се регистрираш отново.',
     'email_confirmation_expired' => 'Кодът за потвърждение изтече, нов емейл за потвърждение беше изпратен.',
@@ -37,7 +37,7 @@ return [
     'social_driver_not_found' => 'Кодът за връзка със социалната мрежа не съществува',
     'social_driver_not_configured' => 'Социалните настройки на твоя :socialAccount не са конфигурирани правилно.',
     'invite_token_expired' => 'Твоята покана е изтекла. Вместо това може да пробваш да възстановиш паролата на профила си.',
-    'login_user_not_found' => 'A user for this action could not be found.',
+    'login_user_not_found' => 'Потребител за това действие не може да бъде намерено.',
 
     // System
     'path_not_writable' => 'Не може да се качи файл в :filePath. Увери се на сървъра, че в пътя може да се записва.',
@@ -109,6 +109,7 @@ return [
     'import_zip_cant_read' => 'Could not read ZIP file.',
     'import_zip_cant_decode_data' => 'Could not find and decode ZIP data.json content.',
     'import_zip_no_data' => 'ZIP file data has no expected book, chapter or page content.',
+    'import_zip_data_too_large' => 'ZIP data.json content exceeds the configured application maximum upload size.',
     'import_validation_failed' => 'Import ZIP failed to validate with errors:',
     'import_zip_failed_notification' => 'Failed to import ZIP file.',
     'import_perms_books' => 'You are lacking the required permissions to create books.',
@@ -124,6 +125,7 @@ return [
     'api_incorrect_token_secret' => 'Секретния код, който беше предоставен за достъп до API-а е неправилен',
     'api_user_no_api_permission' => 'Собственика на АPI кода няма право да прави API заявки',
     'api_user_token_expired' => 'Кода за достъп, който беше използван, вече не е валиден',
+    'api_cookie_auth_only_get' => 'Only GET requests are allowed when using the API with cookie-based authentication',
 
     // Settings & Maintenance
     'maintenance_test_email_failure' => 'Беше върната грешка, когато се изпрати тестовият емейл:',

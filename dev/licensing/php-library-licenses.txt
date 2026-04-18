@@ -8,12 +8,12 @@ aws/aws-sdk-php
 License: Apache-2.0
 License File: vendor/aws/aws-sdk-php/LICENSE
 Source: https://github.com/aws/aws-sdk-php.git
-Link: http://aws.amazon.com/sdkforphp
+Link: https://aws.amazon.com/sdk-for-php
 -----------
 bacon/bacon-qr-code
 License: BSD-2-Clause
 License File: vendor/bacon/bacon-qr-code/LICENSE
-Copyright: Copyright (c) 2017, Ben Scholzen 'DASPRiD'
+Copyright: Copyright (c) 2017-present, Ben Scholzen 'DASPRiD'
 All rights reserved.
 Source: https://github.com/Bacon/BaconQrCode.git
 Link: https://github.com/Bacon/BaconQrCode
@@ -98,6 +98,13 @@ Copyright: Copyright (c) 2013-2023 Eduardo Gulias Davis
 Source: https://github.com/egulias/EmailValidator.git
 Link: https://github.com/egulias/EmailValidator
 -----------
+ezyang/htmlpurifier
+License: LGPL-2.1-or-later
+License File: vendor/ezyang/htmlpurifier/LICENSE
+Copyright: Copyright (C) 1991, 1999 Free Software Foundation, Inc.
+Source: https://github.com/ezyang/htmlpurifier.git
+Link: http://htmlpurifier.org/
+-----------
 firebase/php-jwt
 License: BSD-3-Clause
 License File: vendor/firebase/php-jwt/LICENSE
@@ -176,7 +183,7 @@ License: MIT
 License File: vendor/intervention/image/LICENSE
 Copyright: Copyright (c) 2013-present Oliver Vogel
 Source: https://github.com/Intervention/image.git
-Link: https://image.intervention.io/
+Link: https://image.intervention.io
 -----------
 knplabs/knp-snappy
 License: MIT
@@ -237,21 +244,21 @@ Link: https://config.thephpleague.com
 league/flysystem
 License: MIT
 License File: vendor/league/flysystem/LICENSE
-Copyright: Copyright (c) 2013-2024 Frank de Jonge
+Copyright: Copyright (c) 2013-2026 Frank de Jonge
 Source: https://github.com/thephpleague/flysystem.git
 Link: https://github.com/thephpleague/flysystem.git
 -----------
 league/flysystem-aws-s3-v3
 License: MIT
 License File: vendor/league/flysystem-aws-s3-v3/LICENSE
-Copyright: Copyright (c) 2013-2024 Frank de Jonge
+Copyright: Copyright (c) 2013-2026 Frank de Jonge
 Source: https://github.com/thephpleague/flysystem-aws-s3-v3.git
 Link: https://github.com/thephpleague/flysystem-aws-s3-v3.git
 -----------
 league/flysystem-local
 License: MIT
 License File: vendor/league/flysystem-local/LICENSE
-Copyright: Copyright (c) 2013-2024 Frank de Jonge
+Copyright: Copyright (c) 2013-2026 Frank de Jonge
 Source: https://github.com/thephpleague/flysystem-local.git
 Link: https://github.com/thephpleague/flysystem-local.git
 -----------
@@ -323,7 +330,7 @@ License: MIT
 License File: vendor/nesbot/carbon/LICENSE
 Copyright: Copyright (C) Brian Nesbitt
 Source: https://github.com/CarbonPHP/carbon.git
-Link: https://carbon.nesbot.com
+Link: https://carbonphp.github.io/carbon/
 -----------
 nette/schema
 License: BSD-3-Clause GPL-2.0-only GPL-3.0-only
@@ -465,7 +472,7 @@ Link: https://github.com/php-fig/simple-cache.git
 psy/psysh
 License: MIT
 License File: vendor/psy/psysh/LICENSE
-Copyright: Copyright (c) 2012-2023 Justin Hileman
+Copyright: Copyright (c) 2012-2026 Justin Hileman
 Source: https://github.com/bobthecow/psysh.git
 Link: https://psysh.org
 -----------
@@ -592,6 +599,13 @@ Copyright: Copyright (c) 2018-present Fabien Potencier
 Source: https://github.com/symfony/event-dispatcher-contracts.git
 Link: https://symfony.com
 -----------
+symfony/filesystem
+License: MIT
+License File: vendor/symfony/filesystem/LICENSE
+Copyright: Copyright (c) 2004-present Fabien Potencier
+Source: https://github.com/symfony/filesystem.git
+Link: https://symfony.com
+-----------
 symfony/finder
 License: MIT
 License File: vendor/symfony/finder/LICENSE
@@ -676,6 +690,20 @@ Copyright: Copyright (c) 2022-present Fabien Potencier
 Source: https://github.com/symfony/polyfill-php83.git
 Link: https://symfony.com
 -----------
+symfony/polyfill-php84
+License: MIT
+License File: vendor/symfony/polyfill-php84/LICENSE
+Copyright: Copyright (c) 2024-present Fabien Potencier
+Source: https://github.com/symfony/polyfill-php84.git
+Link: https://symfony.com
+-----------
+symfony/polyfill-php85
+License: MIT
+License File: vendor/symfony/polyfill-php85/LICENSE
+Copyright: Copyright (c) 2025-present Fabien Potencier
+Source: https://github.com/symfony/polyfill-php85.git
+Link: https://symfony.com
+-----------
 symfony/polyfill-uuid
 License: MIT
 License File: vendor/symfony/polyfill-uuid/LICENSE
@@ -739,6 +767,13 @@ Copyright: Copyright (c) 2014-present Fabien Potencier
 Source: https://github.com/symfony/var-dumper.git
 Link: https://symfony.com
 -----------
+thecodingmachine/safe
+License: MIT
+License File: vendor/thecodingmachine/safe/LICENSE
+Copyright: Copyright (c) 2018 TheCodingMachine
+Source: https://github.com/thecodingmachine/safe.git
+Link: https://github.com/thecodingmachine/safe.git
+-----------
 tijsverkoyen/css-to-inline-styles
 License: BSD-3-Clause
 License File: vendor/tijsverkoyen/css-to-inline-styles/LICENSE.md
@@ -760,9 +795,9 @@ Copyright: Copyright (C) 2019 Lars Moelleken
 Source: https://github.com/voku/portable-ascii.git
 Link: https://github.com/voku/portable-ascii
 -----------
-webmozart/assert
+xemlock/htmlpurifier-html5
 License: MIT
-License File: vendor/webmozart/assert/LICENSE
-Copyright: Copyright (c) 2014 Bernhard Schussek
-Source: https://github.com/webmozarts/assert.git
-Link: https://github.com/webmozarts/assert.git
+License File: vendor/xemlock/htmlpurifier-html5/LICENSE
+Copyright: Copyright (c) 2015 Xemlock
+Source: https://github.com/xemlock/htmlpurifier-html5.git
+Link: https://github.com/xemlock/htmlpurifier-html5

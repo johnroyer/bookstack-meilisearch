@@ -17,7 +17,7 @@ use Illuminate\Support\Collection;
  *
  * @property string                                   $description
  * @property string                                   $description_html
- * @property int                                      $image_id
+ * @property ?int                                     $image_id
  * @property ?int                                     $default_template_id
  * @property ?int                                     $sort_rule_id
  * @property \Illuminate\Database\Eloquent\Collection $chapters
@@ -67,8 +67,7 @@ class Book extends Entity implements HasDescriptionInterface, HasCoverInterface,
      */
     public function chapters(): HasMany
     {
-        return $this->hasMany(Chapter::class)
-            ->where('type', '=', 'chapter');
+        return $this->hasMany(Chapter::class);
     }
 
     /**

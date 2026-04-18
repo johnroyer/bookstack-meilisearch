@@ -109,6 +109,7 @@ return [
     'import_zip_cant_read' => 'No es pot llegir el fitxer ZIP.',
     'import_zip_cant_decode_data' => 'No s\'ha pogut trobar i descodificar el fitxer data.json en el fitxer ZIP.',
     'import_zip_no_data' => 'Les dades del fitxer ZIP no contenen cap llibre, capítol o contingut de pàgina.',
+    'import_zip_data_too_large' => 'ZIP data.json content exceeds the configured application maximum upload size.',
     'import_validation_failed' => 'Error en validar la importació del ZIP amb els errors:',
     'import_zip_failed_notification' => 'Error en importar l\'arxiu ZIP.',
     'import_perms_books' => 'Li falten els permisos necessaris per crear llibres.',
@@ -124,6 +125,7 @@ return [
     'api_incorrect_token_secret' => 'El secret proporcionat per al testimoni d’API utilitzat no és correcte.',
     'api_user_no_api_permission' => 'El propietari del testimoni API utilitzat no té permís per a fer crides a l’API.',
     'api_user_token_expired' => 'El testimoni d’autorització utilitzat ha caducat.',
+    'api_cookie_auth_only_get' => 'Only GET requests are allowed when using the API with cookie-based authentication',
 
     // Settings & Maintenance
     'maintenance_test_email_failure' => 'S’ha produït un error en enviar el correu electrònic de prova:',

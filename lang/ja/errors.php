@@ -109,6 +109,7 @@ return [
     'import_zip_cant_read' => 'ZIPファイルを読み込めません。',
     'import_zip_cant_decode_data' => 'ZIPファイル内に data.json が見つからないかデコードできませんでした。',
     'import_zip_no_data' => 'ZIPファイルのデータにブック、チャプター、またはページコンテンツがありません。',
+    'import_zip_data_too_large' => 'ZIPに含まれる data.json が、アプリケーションで設定された最大アップロードサイズを超えています。',
     'import_validation_failed' => 'エラーによりインポートZIPの検証に失敗しました:',
     'import_zip_failed_notification' => 'ZIP ファイルのインポートに失敗しました。',
     'import_perms_books' => 'ブックを作成するために必要な権限がありません。',
@@ -124,6 +125,7 @@ return [
     'api_incorrect_token_secret' => '利用されたAPIトークンに対して提供されたシークレットが正しくありません',
     'api_user_no_api_permission' => '使用されているAPIトークンの所有者には、API呼び出しを行う権限がありません',
     'api_user_token_expired' => '認証トークンが期限切れです。',
+    'api_cookie_auth_only_get' => 'Cookie ベースの認証で API を使用する場合、GET リクエストのみが許可されます',
 
     // Settings & Maintenance
     'maintenance_test_email_failure' => 'テストメール送信時にエラーが発生しました:',

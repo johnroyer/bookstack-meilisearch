@@ -13,7 +13,6 @@ use BookStack\Activity\Models\Viewable;
 use BookStack\Activity\Models\Watch;
 use BookStack\App\Model;
 use BookStack\App\SluggableInterface;
-use BookStack\Entities\Tools\SlugGenerator;
 use BookStack\Permissions\JointPermissionBuilder;
 use BookStack\Permissions\Models\EntityPermission;
 use BookStack\Permissions\Models\JointPermission;
@@ -44,9 +43,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon     $created_at
  * @property Carbon     $updated_at
  * @property Carbon     $deleted_at
- * @property int        $created_by
- * @property int        $updated_by
- * @property int        $owned_by
+ * @property int|null   $created_by
+ * @property int|null   $updated_by
+ * @property int|null   $owned_by
  * @property Collection $tags
  *
  * @method static Entity|Builder visible()
@@ -237,10 +236,11 @@ abstract class Entity extends Model implements
 
     /**
      * Get the comments for an entity.
+     * @return MorphMany<Comment, $this>
      */
     public function comments(bool $orderByCreated = true): MorphMany
     {
-        $query = $this->morphMany(Comment::class, 'entity');
+        $query = $this->morphMany(Comment::class, 'commentable');
 
         return $orderByCreated ? $query->orderBy('created_at', 'asc') : $query;
     }
@@ -407,16 +407,6 @@ abstract class Entity extends Model implements
     /**
      * {@inheritdoc}
      */
-    public function refreshSlug(): string
-    {
-        $this->slug = app()->make(SlugGenerator::class)->generate($this, $this->name);
-
-        return $this->slug;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function favourites(): MorphMany
     {
         return $this->morphMany(Favourite::class, 'favouritable');
@@ -438,6 +428,14 @@ abstract class Entity extends Model implements
     public function watches(): MorphMany
     {
         return $this->morphMany(Watch::class, 'watchable');
+    }
+
+    /**
+     * Get the related slug history for this entity.
+     */
+    public function slugHistory(): MorphMany
+    {
+        return $this->morphMany(SlugHistory::class, 'sluggable');
     }
 
     /**
@@ -469,5 +467,19 @@ abstract class Entity extends Model implements
         }
 
         return $contentFields;
+    }
+
+    /**
+     * Create a new instance for the given entity type.
+     */
+    public static function instanceFromType(string $type): self
+    {
+        return match ($type) {
+            'page' => new Page(),
+            'chapter' => new Chapter(),
+            'book' => new Book(),
+            'bookshelf' => new Bookshelf(),
+            default => throw new \InvalidArgumentException("Invalid entity type: {$type}"),
+        };
     }
 }

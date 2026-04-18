@@ -3,6 +3,7 @@
 namespace BookStack\App\Providers;
 
 use BookStack\Access\SocialDriverManager;
+use BookStack\Activity\Models\Comment;
 use BookStack\Activity\Tools\ActivityLogger;
 use BookStack\Entities\Models\Book;
 use BookStack\Entities\Models\Bookshelf;
@@ -64,6 +65,13 @@ class AppServiceProvider extends ServiceProvider
             URL::forceScheme($isHttps ? 'https' : 'http');
         }
 
+        // Set SMTP mail driver to use a local domain matching the app domain,
+        // which helps avoid defaulting to a 127.0.0.1 domain
+        if ($appUrl) {
+            $hostName = parse_url($appUrl, PHP_URL_HOST) ?: null;
+            config()->set('mail.mailers.smtp.local_domain', $hostName);
+        }
+
         // Allow longer string lengths after upgrade to utf8mb4
         Schema::defaultStringLength(191);
 
@@ -73,6 +81,7 @@ class AppServiceProvider extends ServiceProvider
             'book'      => Book::class,
             'chapter'   => Chapter::class,
             'page'      => Page::class,
+            'comment'   => Comment::class,
         ]);
     }
 }

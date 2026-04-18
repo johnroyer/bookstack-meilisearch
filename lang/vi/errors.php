@@ -109,6 +109,7 @@ return [
     'import_zip_cant_read' => 'Không thể đọc tệp ZIP.',
     'import_zip_cant_decode_data' => 'Không thể tìm và giải mã nội dung ZIP data.json.',
     'import_zip_no_data' => 'Dữ liệu tệp ZIP không có nội dung sách, chương hoặc trang mong đợi.',
+    'import_zip_data_too_large' => 'ZIP data.json content exceeds the configured application maximum upload size.',
     'import_validation_failed' => 'Nhập tệp ZIP không hợp lệ với các lỗi:',
     'import_zip_failed_notification' => 'Không thể nhập tệp ZIP.',
     'import_perms_books' => 'Bạn không có quyền cần thiết để tạo sách.',
@@ -124,6 +125,7 @@ return [
     'api_incorrect_token_secret' => 'Mã bí mật được cung cấp cho token API đang được sử dụng không hợp lệ',
     'api_user_no_api_permission' => 'Chủ của token API đang sử dụng không có quyền gọi API',
     'api_user_token_expired' => 'Token sử dụng cho việc ủy quyền đã hết hạn',
+    'api_cookie_auth_only_get' => 'Only GET requests are allowed when using the API with cookie-based authentication',
 
     // Settings & Maintenance
     'maintenance_test_email_failure' => 'Lỗi khi gửi email thử:',

@@ -1,10 +1,8 @@
 <?php
 
-namespace Tests\Entity;
+namespace Tests\Activity;
 
-use BookStack\Activity\ActivityType;
 use BookStack\Activity\Models\Comment;
-use BookStack\Entities\Models\Page;
 use Tests\TestCase;
 
 class CommentDisplayTest extends TestCase
@@ -72,8 +70,8 @@ class CommentDisplayTest extends TestCase
 
         Comment::factory()->create([
             'created_by'  => $editor->id,
-            'entity_type' => 'page',
-            'entity_id'   => $page->id,
+            'commentable_type' => 'page',
+            'commentable_id'   => $page->id,
         ]);
 
         $resp = $this->actingAs($editor)->get($page->getUrl());
@@ -84,7 +82,7 @@ class CommentDisplayTest extends TestCase
     public function test_comment_displays_relative_times()
     {
         $page = $this->entities->page();
-        $comment = Comment::factory()->create(['entity_id' => $page->id, 'entity_type' => $page->getMorphClass()]);
+        $comment = Comment::factory()->create(['commentable_id' => $page->id, 'commentable_type' => $page->getMorphClass()]);
         $comment->created_at = now()->subWeek();
         $comment->updated_at = now()->subDay();
         $comment->save();

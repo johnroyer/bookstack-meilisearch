@@ -6,6 +6,7 @@ use BookStack\Access\SocialDriverManager;
 use BookStack\Exceptions\ThemeException;
 use Illuminate\Console\Application;
 use Illuminate\Console\Application as Artisan;
+use Illuminate\View\FileViewFinder;
 use Symfony\Component\Console\Command\Command;
 
 class ThemeService
@@ -14,6 +15,11 @@ class ThemeService
      * @var array<string, callable[]>
      */
     protected array $listeners = [];
+
+    /**
+     * @var array<string, ThemeModule>
+     */
+    protected array $modules = [];
 
     /**
      * Get the currently configured theme.
@@ -76,18 +82,83 @@ class ThemeService
     }
 
     /**
-     * Read any actions from the set theme path if the 'functions.php' file exists.
+     * Read any actions from the 'functions.php' file of the active theme or its modules.
      */
     public function readThemeActions(): void
     {
-        $themeActionsFile = theme_path('functions.php');
-        if ($themeActionsFile && file_exists($themeActionsFile)) {
+        $moduleFunctionFiles = array_map(function (ThemeModule $module): string {
+            return $module->path('functions.php');
+        }, $this->modules);
+        $allFunctionFiles = array_merge(array_values($moduleFunctionFiles), [theme_path('functions.php')]);
+        $filteredFunctionFiles = array_filter($allFunctionFiles, function (string $file): bool {
+            return $file && file_exists($file);
+        });
+
+        foreach ($filteredFunctionFiles as $functionFile) {
             try {
-                require $themeActionsFile;
+                require $functionFile;
             } catch (\Error $exception) {
-                throw new ThemeException("Failed loading theme functions file at \"{$themeActionsFile}\" with error: {$exception->getMessage()}");
+                throw new ThemeException("Failed loading theme functions file at \"{$functionFile}\" with error: {$exception->getMessage()}");
             }
         }
+    }
+
+    /**
+     * Read the modules folder and load in any valid theme modules.
+     * @throws ThemeModuleException
+     */
+    public function loadModules(): void
+    {
+        $modulesFolder = theme_path('modules');
+        if (!$modulesFolder) {
+            return;
+        }
+
+        $this->modules = (new ThemeModuleManager($modulesFolder))->load();
+    }
+
+    /**
+     * Get all loaded theme modules.
+     * @return array<string, ThemeModule>
+     */
+    public function getModules(): array
+    {
+        return $this->modules;
+    }
+
+    /**
+     * Get a hash to represent the currently loaded modules.
+     */
+    public function getModulesHash(): string
+    {
+        $key = "";
+
+        foreach ($this->modules as $module) {
+            $key .= $module->name . ':' . $module->version . ';';
+        }
+
+        return md5($key);
+    }
+
+    /**
+     * Look for a specific file within the theme or its modules.
+     * Returns the first file found or null if not found.
+     */
+    public function findFirstFile(string $path): ?string
+    {
+        $themePath = theme_path($path);
+        if (file_exists($themePath)) {
+            return $themePath;
+        }
+
+        foreach ($this->modules as $module) {
+            $customizedFile = $module->path($path);
+            if (file_exists($customizedFile)) {
+                return $customizedFile;
+            }
+        }
+
+        return null;
     }
 
     /**

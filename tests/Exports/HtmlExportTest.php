@@ -18,7 +18,7 @@ class HtmlExportTest extends TestCase
         $resp = $this->get($page->getUrl('/export/html'));
         $resp->assertStatus(200);
         $resp->assertSee($page->name);
-        $resp->assertHeader('Content-Disposition', 'attachment; filename="' . $page->slug . '.html"');
+        $resp->assertHeader('Content-Disposition', 'attachment; filename*=UTF-8\'\'' . $page->slug . '.html');
     }
 
     public function test_book_html_export()
@@ -31,7 +31,7 @@ class HtmlExportTest extends TestCase
         $resp->assertStatus(200);
         $resp->assertSee($book->name);
         $resp->assertSee($page->name);
-        $resp->assertHeader('Content-Disposition', 'attachment; filename="' . $book->slug . '.html"');
+        $resp->assertHeader('Content-Disposition', 'attachment; filename*=UTF-8\'\'' . $book->slug . '.html');
     }
 
     public function test_book_html_export_shows_html_descriptions()
@@ -58,7 +58,7 @@ class HtmlExportTest extends TestCase
         $resp->assertStatus(200);
         $resp->assertSee($chapter->name);
         $resp->assertSee($page->name);
-        $resp->assertHeader('Content-Disposition', 'attachment; filename="' . $chapter->slug . '.html"');
+        $resp->assertHeader('Content-Disposition', 'attachment; filename*=UTF-8\'\'' . $chapter->slug . '.html');
     }
 
     public function test_chapter_html_export_shows_html_descriptions()

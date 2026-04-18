@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property bool         $draft
  * @property int          $revision_count
  * @property string       $editor
- * @property Chapter      $chapter
+ * @property Chapter|null $chapter
  * @property Collection   $attachments
  * @property Collection   $revisions
  * @property PageRevision $currentRevision
@@ -122,6 +122,14 @@ class Page extends BookChild
         ];
 
         return url('/' . implode('/', $parts));
+    }
+
+    /**
+     * Get the ID-based permalink for this page.
+     */
+    public function getPermalink(): string
+    {
+        return url("/link/{$this->id}");
     }
 
     /**

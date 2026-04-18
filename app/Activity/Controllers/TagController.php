@@ -24,9 +24,9 @@ class TagController extends Controller
             'usages' => trans('entities.tags_usages'),
         ]);
 
-        $nameFilter = $request->get('name', '');
+        $nameFilter = $request->input('name', '');
         $tags = $this->tagRepo
-            ->queryWithTotals($listOptions, $nameFilter)
+            ->queryWithTotalsForList($listOptions, $nameFilter)
             ->paginate(50)
             ->appends(array_filter(array_merge($listOptions->getPaginationAppends(), [
                 'name'   => $nameFilter,

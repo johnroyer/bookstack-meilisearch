@@ -109,6 +109,7 @@ return [
     'import_zip_cant_read' => 'Could not read ZIP file.',
     'import_zip_cant_decode_data' => 'Could not find and decode ZIP data.json content.',
     'import_zip_no_data' => 'ZIP file data has no expected book, chapter or page content.',
+    'import_zip_data_too_large' => 'ZIP data.json content exceeds the configured application maximum upload size.',
     'import_validation_failed' => 'Import ZIP failed to validate with errors:',
     'import_zip_failed_notification' => 'Failed to import ZIP file.',
     'import_perms_books' => 'You are lacking the required permissions to create books.',
@@ -124,6 +125,7 @@ return [
     'api_incorrect_token_secret' => 'Secret poskytnutý pre daný token API je nesprávny',
     'api_user_no_api_permission' => 'Vlastník použitého tokenu API nemá povolenie na uskutočňovanie volaní rozhrania API',
     'api_user_token_expired' => 'Platnosť použitého autorizačného tokenu vypršala',
+    'api_cookie_auth_only_get' => 'Only GET requests are allowed when using the API with cookie-based authentication',
 
     // Settings & Maintenance
     'maintenance_test_email_failure' => 'Chyba pri odosielaní testovacieho e-mailu:',

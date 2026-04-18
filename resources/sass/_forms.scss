@@ -142,6 +142,9 @@
     padding-inline-end: 12px;
     max-width: 864px;
   }
+  [drawio-diagram] {
+    cursor: pointer;
+  }
   [drawio-diagram]:hover {
     outline: 2px solid var(--color-primary);
   }
@@ -346,6 +349,10 @@ input[type=color] {
   input[type=text], input[type=email], input[type=password], select {
     width: 100%;
   }
+}
+
+.small-inputs input {
+  width: 150px;
 }
 
 .simple-code-input {
