@@ -1,40 +1,35 @@
 import {
     $createParagraphNode,
     $insertNodes,
-    $isDecoratorNode, COMMAND_PRIORITY_HIGH, DROP_COMMAND,
+    $isDecoratorNode, $isTextNode, $setSelection, COMMAND_PRIORITY_HIGH, DROP_COMMAND,
     LexicalEditor,
     LexicalNode, PASTE_COMMAND
 } from "lexical";
-import {$insertNewBlockNodesAtSelection, $selectSingleNode} from "../utils/selection";
-import {$getNearestBlockNodeForCoords, $htmlToBlockNodes} from "../utils/nodes";
+import {$insertNewNodesAtSelection, $selectSingleNode} from "../utils/selection";
+import {$getNodePositionFromMouseEvent, $htmlToBlockNodes} from "../utils/nodes";
 import {Clipboard} from "../../services/clipboard";
 import {$createImageNode} from "@lexical/rich-text/LexicalImageNode";
 import {$createLinkNode} from "@lexical/link";
 import {EditorImageData, uploadImageFile} from "../utils/images";
 import {EditorUiContext} from "../ui/framework/core";
 
-function $getNodeFromMouseEvent(event: MouseEvent, editor: LexicalEditor): LexicalNode|null {
-    const x = event.clientX;
-    const y = event.clientY;
-    const dom = document.elementFromPoint(x, y);
-    if (!dom) {
-        return null;
-    }
-
-    return $getNearestBlockNodeForCoords(editor, event.clientX, event.clientY);
-}
 
 function $insertNodesAtEvent(nodes: LexicalNode[], event: DragEvent, editor: LexicalEditor) {
-    const positionNode = $getNodeFromMouseEvent(event, editor);
+    const position = $getNodePositionFromMouseEvent(event, editor);
 
-    if (positionNode) {
-        $selectSingleNode(positionNode);
+    if (position && $isTextNode(position.node)) {
+        const selection = position.node.select(position.offset, position.offset);
+        $setSelection(selection);
+    } else if  (position) {
+        $selectSingleNode(position.node);
     }
 
-    $insertNewBlockNodesAtSelection(nodes, true);
+    $insertNewNodesAtSelection(nodes);
 
-    if (!$isDecoratorNode(positionNode) || !positionNode?.getTextContent()) {
-        positionNode?.remove();
+    if (position) {
+        if (!$isDecoratorNode(position.node) && !position.node?.getTextContent()) {
+            position.node.remove();
+        }
     }
 }
 
@@ -113,6 +108,7 @@ function handleImageLinkInsert(data: DataTransfer, context: EditorUiContext): bo
 function createDropListener(context: EditorUiContext): (event: DragEvent) => boolean {
     const editor = context.editor;
     return (event: DragEvent): boolean => {
+
         // Template handling
         const templateId = event.dataTransfer?.getData('bookstack/template') || '';
         if (templateId) {
