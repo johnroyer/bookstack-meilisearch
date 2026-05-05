@@ -30,6 +30,7 @@ export class EditorUIManager {
         this.context = context;
         this.setupEventListeners();
         this.setupEditor(context.editor, context);
+        this.dropdowns.setIsRTL(this.context.manager.getDefaultDirection() === 'rtl');
     }
 
     getContext(): EditorUiContext {
