@@ -1338,6 +1338,10 @@ export function $isInlineElementOrDecoratorNode(node: LexicalNode): boolean {
   );
 }
 
+export function $isInlineElementOrTextNode(node: LexicalNode|null): boolean {
+  return node !== null && ($isTextNode(node) || ($isElementNode(node) && node.isInline()));
+}
+
 export function $getNearestRootOrShadowRoot(
   node: LexicalNode,
 ): RootNode | ElementNode {
