@@ -39,6 +39,8 @@ import {EditorUiContext} from "../../../../ui/framework/core";
 import {EditorUIManager} from "../../../../ui/framework/manager";
 import {ImageNode} from "@lexical/rich-text/LexicalImageNode";
 import {MediaNode} from "@lexical/rich-text/LexicalMediaNode";
+import {DiagramNode} from "@lexical/rich-text/LexicalDiagramNode";
+import {DiagramDecorator} from "../../../../ui/decorators/DiagramDecorator";
 
 type TestEnv = {
   readonly container: HTMLDivElement;
@@ -489,6 +491,7 @@ export function createTestContext(): EditorUiContext {
     nodes: [
         ImageNode,
         MediaNode,
+        DiagramNode,
     ]
   });
 
@@ -509,6 +512,7 @@ export function createTestContext(): EditorUiContext {
   };
 
   context.manager.setContext(context);
+  context.manager.registerDecoratorType('diagram', DiagramDecorator);
 
   return context;
 }
