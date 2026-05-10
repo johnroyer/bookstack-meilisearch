@@ -50,7 +50,7 @@ export class EditorContextToolbar extends EditorContainerUiElement {
 
         const targetMid = targetBounds.left + (targetBounds.width / 2);
         const intendedBounds: DOMRectInit = {
-            x: targetMid -(domBounds.width / 2),
+            x: targetMid - (domBounds.width / 2),
             y: targetBounds.bottom + 6,
             width: domBounds.width,
             height: domBounds.height,
