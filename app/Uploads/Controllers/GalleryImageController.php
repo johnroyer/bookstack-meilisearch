@@ -2,6 +2,7 @@
 
 namespace BookStack\Uploads\Controllers;
 
+use BookStack\Entities\Queries\PageQueries;
 use BookStack\Exceptions\ImageUploadException;
 use BookStack\Http\Controller;
 use BookStack\Permissions\Permission;
@@ -14,7 +15,8 @@ use Illuminate\Validation\ValidationException;
 class GalleryImageController extends Controller
 {
     public function __construct(
-        protected ImageRepo $imageRepo
+        protected ImageRepo $imageRepo,
+        protected PageQueries $pageQueries,
     ) {
     }
 
@@ -56,20 +58,26 @@ class GalleryImageController extends Controller
         $this->checkPermission(Permission::ImageCreateAll);
 
         try {
-            $this->validate($request, [
+            $validated = $this->validate($request, [
                 'file' => $this->getImageValidationRules(),
+                'uploaded_to' => ['required', 'integer'],
             ]);
         } catch (ValidationException $exception) {
-            return $this->jsonError(implode("\n", $exception->errors()['file']));
+            $errors = $exception->errors();
+            $messages = array_merge($errors['file'] ?? [], $errors['uploaded_to'] ?? []);
+            return $this->jsonError(implode("\n", $messages));
         }
+
+        $uploadedTo = intval($validated['uploaded_to']);
+        $targetPage = $this->pageQueries->findVisibleByIdOrFail($uploadedTo);
+        $this->checkOwnablePermission(Permission::PageUpdate, $targetPage);
 
         new OutOfMemoryHandler(function () {
             return $this->jsonError(trans('errors.image_upload_memory_limit'));
         });
 
         try {
-            $imageUpload = $request->file('file');
-            $uploadedTo = $request->input('uploaded_to', 0);
+            $imageUpload = $validated['file'];
             $image = $this->imageRepo->saveNew($imageUpload, 'gallery', $uploadedTo);
         } catch (ImageUploadException $e) {
             return response($e->getMessage(), 500);

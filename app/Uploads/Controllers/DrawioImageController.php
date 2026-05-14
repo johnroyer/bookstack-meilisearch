@@ -2,6 +2,7 @@
 
 namespace BookStack\Uploads\Controllers;
 
+use BookStack\Entities\Queries\PageQueries;
 use BookStack\Exceptions\ImageUploadException;
 use BookStack\Http\Controller;
 use BookStack\Permissions\Permission;
@@ -14,7 +15,8 @@ use Illuminate\Http\Request;
 class DrawioImageController extends Controller
 {
     public function __construct(
-        protected ImageRepo $imageRepo
+        protected ImageRepo $imageRepo,
+        protected PageQueries $pageQueries,
     ) {
     }
 
@@ -53,16 +55,18 @@ class DrawioImageController extends Controller
      */
     public function create(Request $request)
     {
-        $this->validate($request, [
+        $this->checkPermission(Permission::ImageCreateAll);
+        $validated = $this->validate($request, [
             'image'       => ['required', 'string'],
             'uploaded_to' => ['required', 'integer'],
         ]);
 
-        $this->checkPermission(Permission::ImageCreateAll);
-        $imageBase64Data = $request->input('image');
+        $imageBase64Data = $validated['image'];
+        $uploadedTo = $validated['uploaded_to'];
+        $targetPage = $this->pageQueries->findVisibleByIdOrFail($uploadedTo);
+        $this->checkOwnablePermission(Permission::PageUpdate, $targetPage);
 
         try {
-            $uploadedTo = $request->input('uploaded_to', 0);
             $image = $this->imageRepo->saveDrawing($imageBase64Data, $uploadedTo);
         } catch (ImageUploadException $e) {
             return response($e->getMessage(), 500);
