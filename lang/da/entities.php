@@ -63,10 +63,10 @@ return [
     'import_delete_desc' => 'Dette vil slette den uploadede ZIP-fil og kan ikke fortrydes.',
     'import_errors' => 'Importfejl',
     'import_errors_desc' => 'Følgende fejl opstod under importforsøget:',
-    'breadcrumb_siblings_for_page' => 'Navigate siblings for page',
-    'breadcrumb_siblings_for_chapter' => 'Navigate siblings for chapter',
-    'breadcrumb_siblings_for_book' => 'Navigate siblings for book',
-    'breadcrumb_siblings_for_bookshelf' => 'Navigate siblings for shelf',
+    'breadcrumb_siblings_for_page' => 'Naviger blandt siderne',
+    'breadcrumb_siblings_for_chapter' => 'Gå til næste eller forrige kapitel',
+    'breadcrumb_siblings_for_book' => 'Gennemse søskende til bogen',
+    'breadcrumb_siblings_for_bookshelf' => 'Gennemse undermapper til hylden',
 
     // Permissions and restrictions
     'permissions' => 'Rettigheder',
@@ -173,6 +173,7 @@ return [
     'books_sort_desc' => 'Flyt kapitler og sider i en bog for at omorganisere dens indhold. Der kan tilføjes andre bøger, som gør det nemt at flytte kapitler og sider mellem bøgerne. Man kan indstille en automatisk sorteringsregel, så bogens indhold automatisk sorteres efter ændringer.',
     'books_sort_auto_sort' => 'Mulighed for automatisk sortering',
     'books_sort_auto_sort_active' => 'Automatisk sortering Aktiv: :sortName',
+    'books_sort_auto_sort_creation_hint' => 'En bruger med de nødvendige rettigheder kan oprette regler for automatisk sortering i indstillingsområdet »Lister og sortering«.',
     'books_sort_named' => 'Sorter bog :bookName',
     'books_sort_name' => 'Sortér efter navn',
     'books_sort_created' => 'Sortér efter oprettelsesdato',

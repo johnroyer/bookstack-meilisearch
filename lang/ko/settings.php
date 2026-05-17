@@ -104,7 +104,7 @@ return [
     'sort_rule_op_chapters_first' => '챕터 우선 정렬',
     'sort_rule_op_chapters_last' => '챕터 나중 정렬',
     'sorting_page_limits' => 'Per-Page Display Limits',
-    'sorting_page_limits_desc' => 'Set how many items to show per-page in various lists within the system. Typically a lower amount will be more performant, while a higher amount avoids the need to click through multiple pages. Using an even multiple of 3 (18, 24, 30, etc...) is recommended.',
+    'sorting_page_limits_desc' => 'Set how many items to show per-page in various lists within the system. Typically a lower amount will be more performant, while a higher amount avoids the need to click through multiple pages. Using a multiple of 6 is recommended.',
 
     // Maintenance settings
     'maint' => '유지관리',
@@ -207,6 +207,7 @@ return [
     'role_all' => '모든 항목',
     'role_own' => '직접 만든 항목',
     'role_controlled_by_asset' => '저마다 다름',
+    'role_controlled_by_page_delete' => 'Controlled by page delete permissions',
     'role_save' => '저장',
     'role_users' => '이 역할을 가진 사용자들',
     'role_users_none' => '역할이 부여된 사용자가 없습니다.',

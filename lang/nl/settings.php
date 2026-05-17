@@ -104,7 +104,7 @@ return [
     'sort_rule_op_chapters_first' => 'Hoofdstukken Eerst',
     'sort_rule_op_chapters_last' => 'Hoofdstukken Laatst',
     'sorting_page_limits' => 'Weergavelimiet Per Pagina',
-    'sorting_page_limits_desc' => 'Stel in hoeveel items er op een pagina worden laten zien in de verschillende lijstweergaves. Een lager aantal verbeterd de snelheid, een hoger aantal verminderd het doorklikken door pagina\'s. Een even veelvoud van 3 (18, 24, 30, etc...) wordt aanbevolen.',
+    'sorting_page_limits_desc' => 'Set how many items to show per-page in various lists within the system. Typically a lower amount will be more performant, while a higher amount avoids the need to click through multiple pages. Using a multiple of 6 is recommended.',
 
     // Maintenance settings
     'maint' => 'Onderhoud',
@@ -207,6 +207,7 @@ return [
     'role_all' => 'Alles',
     'role_own' => 'Eigen',
     'role_controlled_by_asset' => 'Gecontroleerd door de asset waar deze is geüpload',
+    'role_controlled_by_page_delete' => 'Controlled by page delete permissions',
     'role_save' => 'Rol Opslaan',
     'role_users' => 'Gebruikers in deze rol',
     'role_users_none' => 'Geen enkele gebruiker heeft deze rol',

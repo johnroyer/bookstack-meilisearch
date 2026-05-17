@@ -104,7 +104,7 @@ return [
     'sort_rule_op_chapters_first' => 'Chapters First',
     'sort_rule_op_chapters_last' => 'Chapters Last',
     'sorting_page_limits' => 'Per-Page Display Limits',
-    'sorting_page_limits_desc' => 'Set how many items to show per-page in various lists within the system. Typically a lower amount will be more performant, while a higher amount avoids the need to click through multiple pages. Using an even multiple of 3 (18, 24, 30, etc...) is recommended.',
+    'sorting_page_limits_desc' => 'Set how many items to show per-page in various lists within the system. Typically a lower amount will be more performant, while a higher amount avoids the need to click through multiple pages. Using a multiple of 6 is recommended.',
 
     // Maintenance settings
     'maint' => 'Viðhald',
@@ -207,6 +207,7 @@ return [
     'role_all' => 'Allt',
     'role_own' => 'Eigin',
     'role_controlled_by_asset' => 'Controlled by the asset they are uploaded to',
+    'role_controlled_by_page_delete' => 'Controlled by page delete permissions',
     'role_save' => 'Vista hlutverk',
     'role_users' => 'Notendur í þessu hlutverki',
     'role_users_none' => 'Engir notendur eru eins og er í þessu hlutverki',

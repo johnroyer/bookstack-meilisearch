@@ -104,7 +104,7 @@ return [
     'sort_rule_op_chapters_first' => 'チャプタを最初に',
     'sort_rule_op_chapters_last' => 'チャプタを最後に',
     'sorting_page_limits' => 'ページング表示制限',
-    'sorting_page_limits_desc' => 'システム内の各種リストで1ページに表示するアイテム数を設定します。 通常、少ない数に設定するとパフォーマンスが向上し、多い数に設定するとページの移動操作が少なくなります。 3の倍数(18、24、30など)を使用することをお勧めします。',
+    'sorting_page_limits_desc' => 'システム内の各種リストで1ページに表示するアイテム数を設定します。 通常、少ない数に設定するとパフォーマンスが向上し、多い数に設定するとページの移動操作が少なくなります。6 の倍数に設定することをお勧めします。',
 
     // Maintenance settings
     'maint' => 'メンテナンス',
@@ -207,6 +207,7 @@ return [
     'role_all' => '全て',
     'role_own' => '自身',
     'role_controlled_by_asset' => 'このアセットに対し、右記の操作を許可:',
+    'role_controlled_by_page_delete' => 'Controlled by page delete permissions',
     'role_save' => '役割を保存',
     'role_users' => 'この役割を持つユーザー',
     'role_users_none' => 'この役割が付与されたユーザーはいません',

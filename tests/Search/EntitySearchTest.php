@@ -136,17 +136,21 @@ class EntitySearchTest extends TestCase
         $page->tags()->saveMany([new Tag(['name' => 'DonkCount', 'value' => '500'])]);
         $page->created_by = $this->users->admin()->id;
         $page->save();
+        $otherPage = $this->entities->newPage(['name' => 'A different page in negation tests', 'html' => '<p>A different page in negation tests</p>']);
 
         $editor = $this->users->editor();
         $this->actingAs($editor);
 
         $exactSearch = $this->get('/search?term=' . urlencode('negation -"tortoise"'));
         $exactSearch->assertStatus(200)->assertDontSeeText($page->name);
+        $exactSearch->assertSeeText($otherPage->name);
 
         $tagSearchA = $this->get('/search?term=' . urlencode('negation [DonkCount=500]'));
         $tagSearchA->assertStatus(200)->assertSeeText($page->name);
+        $tagSearchA->assertDontSeeText($otherPage->name);
         $tagSearchB = $this->get('/search?term=' . urlencode('negation -[DonkCount=500]'));
         $tagSearchB->assertStatus(200)->assertDontSeeText($page->name);
+        $tagSearchB->assertSeeText($otherPage->name);
 
         $filterSearchA = $this->get('/search?term=' . urlencode('negation -{created_by:me}'));
         $filterSearchA->assertStatus(200)->assertSeeText($page->name);

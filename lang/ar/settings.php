@@ -104,7 +104,7 @@ return [
     'sort_rule_op_chapters_first' => 'الفصول الأولى',
     'sort_rule_op_chapters_last' => 'الفصول الأخيرة',
     'sorting_page_limits' => 'حدود العرض لكل صفحة',
-    'sorting_page_limits_desc' => 'تعيين عدد العناصر لإظهار كل صفحة في قوائم مختلفة داخل النظام. عادةً ما يكون الرقم الأقل هو الأكثر أداء، بينما وضع رقم أعلى يغني عن النقر على صفحات متعددة. يوصى باستخدام مضاعفات رقم ٣ (18 و 24 و 30 و إلخ...).',
+    'sorting_page_limits_desc' => 'Set how many items to show per-page in various lists within the system. Typically a lower amount will be more performant, while a higher amount avoids the need to click through multiple pages. Using a multiple of 6 is recommended.',
 
     // Maintenance settings
     'maint' => 'الصيانة',
@@ -207,6 +207,7 @@ return [
     'role_all' => 'الكل',
     'role_own' => 'ما يخص',
     'role_controlled_by_asset' => 'يتحكم فيها الأصول التي يتم رفعها إلى',
+    'role_controlled_by_page_delete' => 'Controlled by page delete permissions',
     'role_save' => 'حفظ الدور',
     'role_users' => 'مستخدمون داخل هذا الدور',
     'role_users_none' => 'لم يتم تعيين أي مستخدمين لهذا الدور',

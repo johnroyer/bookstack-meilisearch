@@ -8,7 +8,7 @@ aws/aws-sdk-php
 License: Apache-2.0
 License File: vendor/aws/aws-sdk-php/LICENSE
 Source: https://github.com/aws/aws-sdk-php.git
-Link: http://aws.amazon.com/sdkforphp
+Link: https://aws.amazon.com/sdk-for-php
 -----------
 bacon/bacon-qr-code
 License: BSD-2-Clause

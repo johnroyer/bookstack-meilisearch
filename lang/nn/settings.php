@@ -104,7 +104,7 @@ return [
     'sort_rule_op_chapters_first' => 'Chapters First',
     'sort_rule_op_chapters_last' => 'Chapters Last',
     'sorting_page_limits' => 'Per-Page Display Limits',
-    'sorting_page_limits_desc' => 'Set how many items to show per-page in various lists within the system. Typically a lower amount will be more performant, while a higher amount avoids the need to click through multiple pages. Using an even multiple of 3 (18, 24, 30, etc...) is recommended.',
+    'sorting_page_limits_desc' => 'Set how many items to show per-page in various lists within the system. Typically a lower amount will be more performant, while a higher amount avoids the need to click through multiple pages. Using a multiple of 6 is recommended.',
 
     // Maintenance settings
     'maint' => 'Vedlikehold',
@@ -207,6 +207,7 @@ return [
     'role_all' => 'Alle',
     'role_own' => 'Egne',
     'role_controlled_by_asset' => 'Kontrollert av eiendelen de er lastet opp til',
+    'role_controlled_by_page_delete' => 'Controlled by page delete permissions',
     'role_save' => 'Lagre rolle',
     'role_users' => 'Kontoholdere med denne rollen',
     'role_users_none' => 'Ingen kontoholdere er gitt denne rollen',

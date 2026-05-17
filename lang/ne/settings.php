@@ -104,7 +104,7 @@ return [
     'sort_rule_op_chapters_first' => 'पहिले अध्यायहरू',
     'sort_rule_op_chapters_last' => 'अन्त्यमा अध्यायहरू',
     'sorting_page_limits' => 'Per-Page Display Limits',
-    'sorting_page_limits_desc' => 'Set how many items to show per-page in various lists within the system. Typically a lower amount will be more performant, while a higher amount avoids the need to click through multiple pages. Using an even multiple of 3 (18, 24, 30, etc...) is recommended.',
+    'sorting_page_limits_desc' => 'Set how many items to show per-page in various lists within the system. Typically a lower amount will be more performant, while a higher amount avoids the need to click through multiple pages. Using a multiple of 6 is recommended.',
 
     // Maintenance settings
     'maint' => 'सम्भार',
@@ -207,6 +207,7 @@ return [
     'role_all' => 'सबै',
     'role_own' => 'आफ्नो',
     'role_controlled_by_asset' => 'अपलोड गरिएको सम्पत्तिले नियन्त्रण गरेको',
+    'role_controlled_by_page_delete' => 'Controlled by page delete permissions',
     'role_save' => 'भूमिका सुरक्षित गर्नुहोस्',
     'role_users' => 'यस भूमिकाका प्रयोगकर्ताहरू',
     'role_users_none' => 'यो भूमिकामा हाल कुनै प्रयोगकर्ता छैन',

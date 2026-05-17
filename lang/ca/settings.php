@@ -104,7 +104,7 @@ return [
     'sort_rule_op_chapters_first' => 'Capítols a l\'inici',
     'sort_rule_op_chapters_last' => 'Capítols al final',
     'sorting_page_limits' => 'Per-Page Display Limits',
-    'sorting_page_limits_desc' => 'Set how many items to show per-page in various lists within the system. Typically a lower amount will be more performant, while a higher amount avoids the need to click through multiple pages. Using an even multiple of 3 (18, 24, 30, etc...) is recommended.',
+    'sorting_page_limits_desc' => 'Set how many items to show per-page in various lists within the system. Typically a lower amount will be more performant, while a higher amount avoids the need to click through multiple pages. Using a multiple of 6 is recommended.',
 
     // Maintenance settings
     'maint' => 'Manteniment',
@@ -207,6 +207,7 @@ return [
     'role_all' => 'Tot',
     'role_own' => 'Propi',
     'role_controlled_by_asset' => 'Controlat pel recurs a què estan pujats',
+    'role_controlled_by_page_delete' => 'Controlled by page delete permissions',
     'role_save' => 'Desa el rol',
     'role_users' => 'Usuaris assignats en aquest rol',
     'role_users_none' => 'No hi ha cap usuari assignat en aquest rol',

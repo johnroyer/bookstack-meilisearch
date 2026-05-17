@@ -39,7 +39,7 @@ class AttachmentController extends Controller
             'file'        => array_merge(['required'], $this->attachmentService->getFileValidationRules()),
         ]);
 
-        $pageId = $request->get('uploaded_to');
+        $pageId = $request->input('uploaded_to');
         $page = $this->pageQueries->findVisibleByIdOrFail($pageId);
 
         $this->checkPermission(Permission::AttachmentCreateAll);
@@ -125,8 +125,8 @@ class AttachmentController extends Controller
         $this->checkOwnablePermission(Permission::AttachmentUpdate, $attachment);
 
         $attachment = $this->attachmentService->updateFile($attachment, [
-            'name' => $request->get('attachment_edit_name'),
-            'link' => $request->get('attachment_edit_url'),
+            'name' => $request->input('attachment_edit_name'),
+            'link' => $request->input('attachment_edit_url'),
         ]);
 
         return view('attachments.manager-edit-form', [
@@ -141,7 +141,7 @@ class AttachmentController extends Controller
      */
     public function attachLink(Request $request)
     {
-        $pageId = $request->get('attachment_link_uploaded_to');
+        $pageId = $request->input('attachment_link_uploaded_to');
 
         try {
             $this->validate($request, [
@@ -161,8 +161,8 @@ class AttachmentController extends Controller
         $this->checkPermission(Permission::AttachmentCreateAll);
         $this->checkOwnablePermission(Permission::PageUpdate, $page);
 
-        $attachmentName = $request->get('attachment_link_name');
-        $link = $request->get('attachment_link_url');
+        $attachmentName = $request->input('attachment_link_name');
+        $link = $request->input('attachment_link_url');
         $this->attachmentService->saveNewFromLink($attachmentName, $link, intval($pageId));
 
         return view('attachments.manager-link-form', [
@@ -195,10 +195,11 @@ class AttachmentController extends Controller
         $this->validate($request, [
             'order' => ['required', 'array'],
         ]);
+
         $page = $this->pageQueries->findVisibleByIdOrFail($pageId);
         $this->checkOwnablePermission(Permission::PageUpdate, $page);
 
-        $attachmentOrder = $request->get('order');
+        $attachmentOrder = $request->input('order');
         $this->attachmentService->updateFileOrderWithinPage($attachmentOrder, $pageId);
 
         return response()->json(['message' => trans('entities.attachments_order_updated')]);
@@ -221,8 +222,6 @@ class AttachmentController extends Controller
             throw new NotFoundException(trans('errors.attachment_not_found'));
         }
 
-        $this->checkOwnablePermission(Permission::PageView, $page);
-
         if ($attachment->external) {
             return redirect($attachment->path);
         }
@@ -231,7 +230,7 @@ class AttachmentController extends Controller
         $attachmentStream = $this->attachmentService->streamAttachmentFromStorage($attachment);
         $attachmentSize = $this->attachmentService->getAttachmentFileSize($attachment);
 
-        if ($request->get('open') === 'true') {
+        if ($request->input('open') === 'true') {
             return $this->download()->streamedInline($attachmentStream, $fileName, $attachmentSize);
         }
 
@@ -247,6 +246,13 @@ class AttachmentController extends Controller
     {
         /** @var Attachment $attachment */
         $attachment = Attachment::query()->findOrFail($attachmentId);
+
+        try {
+            $this->pageQueries->findVisibleByIdOrFail($attachment->uploaded_to);
+        } catch (NotFoundException $exception) {
+            throw new NotFoundException(trans('errors.attachment_not_found'));
+        }
+
         $this->checkOwnablePermission(Permission::AttachmentDelete, $attachment);
         $this->attachmentService->deleteFile($attachment);
 
