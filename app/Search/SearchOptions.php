@@ -51,7 +51,7 @@ class SearchOptions
         }
 
         if ($request->has('term')) {
-            return static::fromString($request->get('term'));
+            return static::fromString($request->input('term'));
         }
 
         $instance = new SearchOptions();

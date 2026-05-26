@@ -20,8 +20,8 @@ class PermissionsUpdater
      */
     public function updateFromPermissionsForm(Entity $entity, Request $request): void
     {
-        $permissions = $request->get('permissions', null);
-        $ownerId = $request->get('owned_by', null);
+        $permissions = $request->input('permissions', null);
+        $ownerId = $request->input('owned_by', null);
 
         $entity->permissions()->delete();
 

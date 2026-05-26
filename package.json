@@ -15,7 +15,8 @@
     "lint": "eslint \"resources/**/*.js\" \"resources/**/*.mjs\"",
     "fix": "eslint --fix \"resources/**/*.js\" \"resources/**/*.mjs\"",
     "ts:lint": "tsc --noEmit",
-    "test": "jest"
+    "test": "jest",
+    "test:ci": "jest --maxWorkers=1"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

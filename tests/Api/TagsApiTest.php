@@ -1,12 +1,11 @@
 <?php
 
-namespace Api;
+namespace Tests\Api;
 
 use BookStack\Activity\Models\Tag;
 use BookStack\Entities\Models\Book;
 use BookStack\Entities\Models\Chapter;
 use BookStack\Entities\Models\Page;
-use Tests\Api\TestsApi;
 use Tests\TestCase;
 
 class TagsApiTest extends TestCase

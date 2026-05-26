@@ -120,8 +120,14 @@ class SearchRunner
             $filter = function (EloquentBuilder $query) use ($exact) {
                 $inputTerm = str_replace('\\', '\\\\', $exact->value);
                 $query->where('name', 'like', '%' . $inputTerm . '%')
-                    ->orWhere('description', 'like', '%' . $inputTerm . '%')
-                    ->orWhere('text', 'like', '%' . $inputTerm . '%');
+                    ->orWhere(function (EloquentBuilder $query) use ($inputTerm) {
+                        $query->whereNotNull('description')
+                            ->where('description', 'like', '%' . $inputTerm . '%');
+                    })
+                    ->orWhere(function (EloquentBuilder $query) use ($inputTerm) {
+                        $query->whereNotNull('text')
+                            ->where('text', 'like', '%' . $inputTerm . '%');
+                    });
             };
 
             $exact->negated ? $entityQuery->whereNot($filter) : $entityQuery->where($filter);

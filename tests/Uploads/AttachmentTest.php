@@ -5,6 +5,7 @@ namespace Tests\Uploads;
 use BookStack\Entities\Models\Page;
 use BookStack\Entities\Repos\PageRepo;
 use BookStack\Entities\Tools\TrashCan;
+use BookStack\Permissions\Permission;
 use BookStack\Uploads\Attachment;
 use Tests\TestCase;
 
@@ -204,6 +205,21 @@ class AttachmentTest extends TestCase
         $this->assertFalse(file_exists($filePath), 'File at path ' . $filePath . ' was not deleted as expected');
 
         $this->files->deleteAllAttachmentFiles();
+    }
+
+    public function test_attachment_deletion_requires_page_access()
+    {
+        $page = $this->entities->page();
+        $attachment = Attachment::factory()->create(['uploaded_to' => $page->id]);
+        $editor = $this->users->editor();
+
+        $this->permissions->disableEntityInheritedPermissions($page);
+        $this->permissions->grantUserRolePermissions($editor, [Permission::AttachmentDeleteAll]);
+
+        $resp = $this->actingAs($editor)->delete($attachment->getUrl());
+        $resp->assertNotFound();
+
+        $this->assertDatabaseHas('attachments', ['id' => $attachment->id]);
     }
 
     public function test_attachment_access_without_permission_shows_404()

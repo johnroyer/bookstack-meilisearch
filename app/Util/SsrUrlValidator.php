@@ -8,6 +8,10 @@ use BookStack\Exceptions\HttpFetchException;
  * Validate the host we're connecting to when making a server-side-request.
  * Will use the given hosts config if given during construction otherwise
  * will look to the app configured config.
+ *
+ * The config format is a space-seperated list of URL prefixes which should contain the
+ * protocol and host. It can optionally define a path prefix as part of the URL.
+ * Wildcards, via a '*', can be used within these elements to match anything but a '/'.
  */
 class SsrUrlValidator
 {
@@ -48,15 +52,34 @@ class SsrUrlValidator
     {
         $pattern = rtrim(trim($pattern), '/');
         $url = trim($url);
+        $urlParts = parse_url($url);
 
-        if (empty($pattern) || empty($url)) {
+        if (empty($pattern) || empty($url) || $urlParts === false) {
             return false;
         }
 
-        $quoted = preg_quote($pattern, '/');
-        $regexPattern = str_replace('\*', '.*', $quoted);
+        // Prevent potential tricks using percent encoded slashes
+        if (str_contains(strtolower($urlParts['host'] ?? ''), '%2f')) {
+            return false;
+        }
 
-        return preg_match('/^' . $regexPattern . '($|\/.*$|#.*$)/i', $url);
+        // Disregard query and fragment
+        $url = explode('?', $url, 2)[0];
+        $url = explode('#', $url, 2)[0];
+
+        // Disregard userinfo if existing
+        if (!empty($urlParts['user']) || !empty($urlParts['pass'])) {
+            [$start, $postUserinfo] = explode('@', $url, 2);
+            $preUserinfo = explode('//', $start, 2)[0];
+            $url = ($preUserinfo ? $preUserinfo . '//' : '') . $postUserinfo;
+        }
+
+        // Prepare pattern
+        $quoted = preg_quote($pattern, '/');
+        $regexPattern = str_replace('\*', '[^\/]*', $quoted);
+
+        // Check against our URL
+        return preg_match('/^' . $regexPattern . '($|\/.*$)/i', $url);
     }
 
     /**

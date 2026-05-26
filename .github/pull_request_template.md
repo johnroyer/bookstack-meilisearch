@@ -1,11 +1,10 @@
-## Details
+**Warning:**
 
-<!-- Write details of your pull request in here -->
-<!-- Include references to any relevant issues/discussions -->
+This project has migrated to Codeberg:
+https://codeberg.org/bookstack/bookstack
 
-## Checklist
+Please open pull requests here instead.
 
-<!-- Put an 'x' in between the brackets below to confirm these elements -->
+ANY PULL REQUESTS OPENED HERE WILL BE CLOSED WITHOUT COMMENT OR MERGE.
 
-- [ ] I have read the [BookStack community rules](https://www.bookstackapp.com/about/community-rules/).
-- [ ] This PR does not feature significant use of LLM/AI generation as per the community rules above.
+---
