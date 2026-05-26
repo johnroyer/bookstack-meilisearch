@@ -124,7 +124,6 @@ class SearchController extends Controller
      */
     public function searchSuggestions(Request $request)
     {
-<<<<<<< HEAD
         $meilisearch = new Meilisearch(
             new Client(
                 env('MEILISEARCH_HOST') . ':' . env('MEILISEARCH_PORT'),
@@ -133,10 +132,6 @@ class SearchController extends Controller
             'bookstack',
         );
         $entities = $meilisearch->search($request->get('term'))['results'];
-=======
-        $searchTerm = $request->input('term', '');
-        $entities = $this->searchRunner->searchEntities(SearchOptions::fromString($searchTerm), 'all', 1, 5)['results'];
->>>>>>> bookstack-devel
 
         foreach ($entities as $entity) {
             $entity->setAttribute('preview_content', '');
