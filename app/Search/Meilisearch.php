@@ -79,7 +79,7 @@ class Meilisearch
         $collection = collect();
 
         $entityIdByTypes = [];
-        $oder = [];
+        $order = [];
         foreach ($list as $index => $document) {
             [$type, $id] = explode('-', $document['id']);
             $type = strtolower($type);
