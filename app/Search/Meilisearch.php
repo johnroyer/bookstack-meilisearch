@@ -91,7 +91,7 @@ class Meilisearch
 
         // 過濾掉使用者沒有權限檢視的 entity
         $entityProvider = new EntityProvider();
-        $visibleResualt = collect();
+        $visibleResault = collect();
         foreach ($entityIdByTypes as $type => $idList) {
             $modelList = $entityProvider->get($type)
                 ->newQuery()
@@ -99,10 +99,10 @@ class Meilisearch
                 ->whereIn('id', $idList)
                 ->get()
                 ->toArray();
-            $visibleResualt = $visibleResualt->concat($modelList);
+            $visibleResault = $visibleResault->concat($modelList);
         }
 
-        $visibleResualt = $visibleResualt
+        $visibleResault = $visibleResault
             ->sortBy(function ($entity) use ($order) {
                 $key = $entity['type'] . '-' . $entity['id'];
 
