@@ -78,13 +78,14 @@ class Meilisearch
         $list = $index->search($keyword)->getHits();
         $collection = collect();
 
-        $eneityProvider = new EntityProvider();
-        foreach ($list as $document) {
-            $entityInfo = explode('-', $document['id']);
-            $entityInfo[0] = strtolower($entityInfo[0]);
-            $entity = $eneityProvider->get($entityInfo[0])
-                ->find($entityInfo[1]);
-            $collection->push($entity);
+        $entityIdByTypes = [];
+        $oder = [];
+        foreach ($list as $index => $document) {
+            [$type, $id] = explode('-', $document['id']);
+            $type = strtolower($type);
+            $id = (int) $id;
+            $entityIdByTypes[$type][] = $id;
+            $order[$type . '-' . $id] = $index;
         }
 
         return [
