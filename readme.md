@@ -40,4 +40,5 @@ if no error occurs, you can search using Meiliseach on SearchSuggestion (only, s
 
 You can now search using event words in the middle of the phrease:
 
-![search](https://i.imgur.com/nBerBDM.png)
+<img width="908" height="540" alt="2026-06-13-17:13:53-001" src="https://github.com/user-attachments/assets/04004344-3865-464b-9de0-8e953d69c1c0" />
+
