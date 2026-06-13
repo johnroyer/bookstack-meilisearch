@@ -98,12 +98,11 @@ class Meilisearch
                 ->scopes('visible')
                 ->whereIn('id', $idList)
                 ->get();
-            $visibleResault = $visibleResault->push($modelList);
+            $visibleResault = $visibleResault->concat($modelList);
         }
 
         $visibleResault = $visibleResault
             ->sortBy(function ($entity) use ($order) {
-                $entity = $entity->first();
                 $key = $entity->type . '-' . $entity->id;
 
                 if (array_key_exists($key, $order)) {
@@ -115,7 +114,6 @@ class Meilisearch
                 }
             })
             ->values();
-        $visibleResault = $visibleResault->first();
 
         return [
             'total' => $visibleResault->count(),
