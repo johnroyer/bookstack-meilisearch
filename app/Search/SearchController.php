@@ -132,10 +132,6 @@ class SearchController extends Controller
         );
         $entities = $meilisearch->search($request->get('term'))['results'];
 
-        foreach ($entities as $entity) {
-            $entity->setAttribute('preview_content', '');
-        }
-
         return view('search.parts.entity-suggestion-list', [
             'entities' => $entities->slice(0, 5)
         ]);
