@@ -85,6 +85,7 @@ class Meilisearch
             $type = strtolower($type);
             $id = (int) $id;
             $entityIdByTypes[$type][] = $id;
+            // save the order of meilisearch result
             $order[$type . '-' . $id] = $index;
         }
 
@@ -100,6 +101,20 @@ class Meilisearch
                 ->toArray();
             $visibleResualt = $visibleResualt->concat($modelList);
         }
+
+        $visibleResualt = $visibleResualt
+            ->sortBy(function ($entity) use ($order) {
+                $key = $entity->type . '-' . $entity->id;
+
+                if (array_key_exists($key, $order)) {
+                    return $order[$key];
+                } else {
+                    // entity not in meilisearch result
+                    // make it sort to end of the list
+                    return PHP_INT_MAX;
+                }
+            })
+            ->values();
 
         return [
             'total' => $list,
