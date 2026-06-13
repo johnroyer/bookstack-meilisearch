@@ -81,6 +81,7 @@ class Meilisearch
         $eneityProvider = new EntityProvider();
         foreach ($list as $document) {
             $entityInfo = explode('-', $document['id']);
+            $entityInfo[0] = strtolower($entityInfo[0]);
             $entity = $eneityProvider->get($entityInfo[0])
                 ->find($entityInfo[1]);
             $collection->push($entity);
