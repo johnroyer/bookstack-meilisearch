@@ -94,7 +94,7 @@ class Meilisearch
             $model = $entityProvider->get($type)
                 ->newQuery()
                 ->scopes('visible')
-                ->whereIn('id', $ids)
+                ->whereIn('id', $idList)
                 ->get();
             $visibleResualt = $visibleResualt->concat($model);
         }
