@@ -91,12 +91,13 @@ class Meilisearch
         $entityProvider = new EntityProvider();
         $visibleResualt = collect();
         foreach($entityIdByTypes as $type => $idList) {
-            $model = $entityProvider->get($type)
+            $modelList = $entityProvider->get($type)
                 ->newQuery()
                 ->scopes('visible')
                 ->whereIn('id', $idList)
-                ->get();
-            $visibleResualt = $visibleResualt->concat($model);
+                ->get()
+                ->toArray();
+            $visibleResualt = $visibleResualt->concat($modelList);
         }
 
         return [
