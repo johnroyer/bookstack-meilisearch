@@ -104,7 +104,7 @@ class Meilisearch
 
         $visibleResualt = $visibleResualt
             ->sortBy(function ($entity) use ($order) {
-                $key = $entity->type . '-' . $entity->id;
+                $key = $entity['type'] . '-' . $entity['id'];
 
                 if (array_key_exists($key, $order)) {
                     return $order[$key];
