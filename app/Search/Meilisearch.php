@@ -88,6 +88,7 @@ class Meilisearch
             $order[$type . '-' . $id] = $index;
         }
 
+        // 過濾掉使用者沒有權限檢視的 entity
         $entityProvider = new EntityProvider();
         $visibleResualt = collect();
         foreach ($entityIdByTypes as $type => $idList) {
