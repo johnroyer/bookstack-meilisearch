@@ -90,7 +90,7 @@ class Meilisearch
 
         $entityProvider = new EntityProvider();
         $visibleResualt = collect();
-        foreach($entityIdByTypes as $type => $idList) {
+        foreach ($entityIdByTypes as $type => $idList) {
             $modelList = $entityProvider->get($type)
                 ->newQuery()
                 ->scopes('visible')
