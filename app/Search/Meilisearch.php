@@ -88,6 +88,17 @@ class Meilisearch
             $order[$type . '-' . $id] = $index;
         }
 
+        $entityProvider = new EntityProvider();
+        $visibleResualt = collect();
+        foreach($entityIdByTypes as $type => $idList) {
+            $model = $entityProvider->get($type)
+                ->newQuery()
+                ->scopes('visible')
+                ->whereIn('id', $ids)
+                ->get();
+            $visibleResualt = $visibleResualt->concat($model);
+        }
+
         return [
             'total' => $list,
             'count' => $list,
