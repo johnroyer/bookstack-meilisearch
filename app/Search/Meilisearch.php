@@ -78,19 +78,48 @@ class Meilisearch
         $list = $index->search($keyword)->getHits();
         $collection = collect();
 
-        $eneityProvider = new EntityProvider();
-        foreach ($list as $document) {
-            $entityInfo = explode('-', $document['id']);
-            $entity = $eneityProvider->get($entityInfo[0])
-                ->find($entityInfo[1]);
-            $collection->push($entity);
+        $entityIdByTypes = [];
+        $order = [];
+        foreach ($list as $index => $document) {
+            [$type, $id] = explode('-', $document['id']);
+            $type = strtolower($type);
+            $id = (int) $id;
+            $entityIdByTypes[$type][] = $id;
+            // save the order of meilisearch result
+            $order[$type . '-' . $id] = $index;
         }
 
+        // 過濾掉使用者沒有權限檢視的 entity
+        $entityProvider = new EntityProvider();
+        $visibleResault = collect();
+        foreach ($entityIdByTypes as $type => $idList) {
+            $modelList = $entityProvider->get($type)
+                ->newQuery()
+                ->scopes('visible')
+                ->whereIn('id', $idList)
+                ->get();
+            $visibleResault = $visibleResault->concat($modelList);
+        }
+
+        $visibleResault = $visibleResault
+            ->sortBy(function ($entity) use ($order) {
+                $key = $entity->type . '-' . $entity->id;
+
+                if (array_key_exists($key, $order)) {
+                    return $order[$key];
+                } else {
+                    // entity not in meilisearch result
+                    // make it sort to end of the list
+                    return PHP_INT_MAX;
+                }
+            })
+            ->values();
+
         return [
-            'total' => $list,
-            'count' => $list,
+            'total' => $visibleResault->count(),
+            'count' => $visibleResault->count(),
             'has_more' => false,
-            'results' => $collection,
+            'results' => $visibleResault,
         ];
     }
 

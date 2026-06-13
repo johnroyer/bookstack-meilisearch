@@ -130,7 +130,7 @@ class SearchController extends Controller
             ),
             'bookstack',
         );
-        $entities = $meilisearch->search($request->get('term'))['results'];
+        $entities = $meilisearch->search($request->input('term'))['results'];
 
         return view('search.parts.entity-suggestion-list', [
             'entities' => $entities->slice(0, 5)
