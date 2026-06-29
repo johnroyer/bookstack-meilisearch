@@ -76,7 +76,6 @@ class Meilisearch
     {
         $index = $this->client->index($this->indexName);
         $list = $index->search($keyword)->getHits();
-        $collection = collect();
 
         $entityIdByTypes = [];
         $order = [];
