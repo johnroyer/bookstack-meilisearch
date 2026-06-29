@@ -51,6 +51,7 @@ class Meilisearch
         $data = $className::find($entityId);
 
         // create ID for Meilisearch
+        // string of ID is "{entity-type}-{entity-id}"
         $id = class_basename($entity) . '-' . $entityInfo['id'];
 
         // remove exists data first by entity ID
