@@ -81,6 +81,7 @@ class Meilisearch
         $entityIdByTypes = [];
         $order = [];
         foreach ($list as $index => $document) {
+            // convert from meilisearch document ID to entity information
             [$type, $id] = explode('-', $document['id']);
             $type = strtolower($type);
             $id = (int) $id;
@@ -89,7 +90,7 @@ class Meilisearch
             $order[$type . '-' . $id] = $index;
         }
 
-        // 過濾掉使用者沒有權限檢視的 entity
+        // Filter out entities that the user does not have permission to view
         $entityProvider = new EntityProvider();
         $visibleResault = collect();
         foreach ($entityIdByTypes as $type => $idList) {
@@ -101,6 +102,7 @@ class Meilisearch
             $visibleResault = $visibleResault->concat($modelList);
         }
 
+        // create entity list and order from meilisearch result
         $visibleResault = $visibleResault
             ->sortBy(function ($entity) use ($order) {
                 $key = $entity->type . '-' . $entity->id;
